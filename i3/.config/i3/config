@@ -39,7 +39,7 @@ client.background		$UNFOCUS
 #*************** General ******************
 
 # Wallpaper
-exec_always --no-startup-id feh --bg-scale ~/Wallpapers/wall-e_1920x1080.jpg &
+exec_always --no-startup-id feh --bg-scale ~/dotfiles/Wallpapers/space.jpg &
 
 # Lock screen
 set $Locker i3lock-fancy
