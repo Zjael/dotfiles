@@ -3,20 +3,128 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 # Github https://github.com/mohabaks/dotfiles
 
+#*************** Colors ******************
+
+set foreground   #dbe6ec
+set background   #2c3643
+set color0       #2c3643
+set color8       #67747c
+set color1       #fa5e5b
+set color9       #e57977
+set color2       #16c98d
+set color10      #c7e6aa
+set color3       #feef6d
+set color11      #ffc83f
+set color4       #288ad6
+set color12      #8abee5
+set color5       #ff708e
+set color13      #e28ea0
+set color6       #27dede
+set color14      #96f7f7
+set color7       #dbe6ec
+set color15      #99a9b3
+
+set $FOCUS #8abee5
+set $UNFOCUS #288ad6
+set $BORDERF #8abee5
+set $BORDERU #288ad6
+
+# Window colors			border      bg        text	    indicator   child_border
+client.focused 		  	$color12    $BORDERF  $FOCUS    $BORDERF
+client.focused_inactive	$color12    $UNFOCUS  $UNFOCUS  $UNFOCUS
+client.unfocused		$color4     $BORDERU  $UNFOCUS  $BORDERU
+client.urgent			$color5     $FOCUS    $FOCUS    $FOCUS
+client.background		$UNFOCUS
+
+#*************** General ******************
+
+# Wallpaper
+exec_always --no-startup-id feh --bg-scale ~/Wallpapers/wall-e_1920x1080.jpg &
+
+# Lock screen
+set $Locker i3lock-fancy
+
+# Set font for window title bar
+font pango:Gohu GohuFont, Wuncon Siji 8
+for_window [class=".*"] title_format "<span font='tewi 8'> ➤ %title</span>"
+
+# Set per-application border
+for_window [class="^.*"] border pixel 1
+for_window [class="(?i)urxvt"] border pixel 1
+
+#*************** Start-Up ******************
+
+# Start apps during startup
+exec --no-startup-id xrdb -load -I$HOME ~/.Xresources
+exec --no-startup-id ~/.config/polybar/launch.sh &
+exec --no-startup-id . $HOME/.local/bin/urxvt_daemon &
+exec --no-startup-id compton -o 0.3 -b -i 1.0 --config ~/.config/compton.conf
+# set $float exec --no-startup-id ~/.config/shadow_work_around.sh, floating toggle
+exec --no-startup-id urxvt -name __scratchpad -geometry 110x40 -e zsh -c $HOME/scripts/scratchpad.sh
+
+# Dunst
+exec dunst
+
+# Brightness control
+# bindsym XF86MonBrightnessUp exec xbacklight -inc 20
+# bindsym XF86MonBrightnessDown exec xbacklight -dec 20
+bindsym XF86MonBrightnessUp exec --no-startup-id ~/scripts/popup/brightness.sh up
+bindsym XF86MonBrightnessDown exec --no-startup-id ~/scripts/popup/brightness.sh down
+# xflux
+exec xflux -l 51.5333408
+
+# Power
+bindsym $mod+q exec --no-startup-id ~/scripts/power
+
+# Volume & Music Controls
+# bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
+# bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
+# bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
+bindsym XF86AudioLowerVolume exec --no-startup-id ~/scripts/popup/volume.sh down
+bindsym XF86AudioRaiseVolume exec --no-startup-id ~/scripts/popup/volume.sh up
+bindsym XF86AudioMute exec --no-startup-id ~/scripts/popup/volume.sh mute
+
+bindsym $mod+p exec --no-startup-id ~/scripts/popup/music.sh pause
+bindsym XF86AudioPlay exec --no-startup-id ~/scripts/popup/music.sh pause
+bindsym $mod+Shift+comma exec --no-startup-id ~/scripts/popup/music.sh prev
+bindsym XF86AudioPrev exec --no-startup-id ~/scripts/popup/music.sh prev
+bindsym $mod+Shift+period exec --no-startup-id ~/scripts/popup/music.sh next
+bindsym XF86AudioNext exec --no-startup-id ~/scripts/popup/music.sh next
+
+# Touchpad controls
+# bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh
+
+# Screenshot
+# bindsym Print exec scrot -e 'mv $f ~/Pictures/screenshots'
+bindsym Print exec --no-startup-id scrot "/home/$USER/Documents/scrots/auto/%Y-%m-%d_%H%M%S_scrot.png" -e 'notify-send "scrot" "Screenshot saved as $n"'
+bindsym $mod+Print exec --no-startup-id ~/scripts/scrotsel
+
+# Automatic mounting
+exec --no-startup-id udevil --sync --exec-on-drive "notify-send 'Automount' '%l is now mounted at %d.'" --exec-on-remove "notify-send 'Automount' '%l has been removed.'"
+
+# User Message
+exec notify-send -a i3 "i3 loaded" "Hello, $USER."
 
 #*************** Keybindings ******************
 
+# Custom
+bindsym $mod+y fullscreen disable; floating enable; resize set 320 180; sticky enable; move window to position 1016 558
+bindsym $mod+d exec --no-startup-id rofi -show run 
+bindsym $mod+p exec pcmanfm 
+bindsym $mod+b exec firefox
+
+# Modifier key
 set $mod Mod1
 
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
 # Start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec i3-sensible-terminal -geometry 110x40
+# bindsym $mod+Return exec urxvt -geometry 110x40
 
 # Kill focused window
 bindsym $mod+Shift+q kill
-
-# Start Rofi (a program launcher, ssh, window switcher)
-# https://davedavenport.github.io/rofi/
-bindsym $mod+d exec --no-startup-id rofi -show run
 
 # Change focus
 bindsym $mod+j focus left
@@ -66,9 +174,15 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # Focus the child container
-#bindsym $mod+d focus child
+# bindsym $mod+d focus child
 
-# Initialize workspace
+# Reload the configuration file
+bindsym $mod+Shift+c reload
+
+# Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+#*************** Workspace ******************
 # 
 set $w1   1:web
 set $w2   2:dev
@@ -106,12 +220,6 @@ bindsym $mod+Shift+8 move container to workspace $w8
 bindsym $mod+Shift+9 move container to workspace $w9
 bindsym $mod+Shift+0 move container to workspace $w10
 
-# Reload the configuration file
-bindsym $mod+Shift+c reload
-
-# Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-
 # Resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
@@ -136,20 +244,18 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
+bindsym $mod+r mode "resize"
+
 # Make the currently focused window a scratchpad
 bindsym $mod+Shift+minus move scratchpad
 
 # Show the first scratchpad window
-bindsym $mod+minus scratchpad show
-
+bindsym $mod+F2 scratchpad show
 
 # Specify gaps for specific workspace
 #workspace $w5 gaps inner 10
 
-bindsym $mod+r mode "resize"
-
-# Lock screen
-set $Locker i3lock-fancy
+#*************** Extra ******************
 
 # Shutdwon, Restart, Logout, Suspend, Hibernate, Reboot, Lock
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
@@ -167,25 +273,6 @@ mode "$mode_system" {
 }
 bindsym $mod+F9 mode "$mode_system"
 
-# Volume control
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
-
-# Brightness control
-bindsym XF86MonBrightnessUp exec xbacklight -inc 20
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20
-
-# Touchpad controls
-bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh
-
-# Screenshot with scrot
-bindsym Print exec scrot -e 'mv $f ~/Pictures/screenshots'
-
-# My apps shortcut
-bindsym $mod+p exec pcmanfm 
-bindsym $mod+b exec firefox
-
 # Custom colors
 set_from_resource $darkred     color1  #000000
 set_from_resource $red         color9  #000000
@@ -202,16 +289,38 @@ set_from_resource $cyan        color14 #000000
 set_from_resource $darkwhite   color7  #000000
 set_from_resource $white       color15 #000000
 
-# Use custom colors for black
-set $black       #1d2021
-set $darkblack   #282828
+# Enable or disable floating
+for_window [class="^Evince$"] floating enable
+for_window [class="^POPUP$"] floating enable
+for_window [class="^Skype$"] floating enable
+for_window [class="Arandr"] floating enable
+for_window [class="Lxappearance"] floating enable
+for_window [class="Nitrogen"] floating enable
+for_window [class="Artha"] floating enable
+for_window [instance="dukto"] floating enable
+for_window [class="feh"] floating enable
+for_window [window_role="Preferences"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable
+for_window [class="Pavucontrol"] floating enable
+# for_window [class="^.*"] floating enable
+for_window [instance="__scratchpad"] move scratchpad 
+for_window [instance="__scratchpad"] floating enable
 
-
-# Window colors           border      background   text            indicator    child_border
-client.focused            $darkblack  $darkblack   $darkblue       $darkblack   $darkblack
-client.focused_inactive   $black      $black       $darkwhite      $darkblack   $darkblack
-client.unfocused          $black      $black       $darkwhite      $darkblack   $darkblack
-client.urgent             $black      $black       $darkwhite      $darkblack   $darkblack
+# Starting apps on a specific workspace
+assign [class="^Tor Browser$"]    $w1
+assign [class="^Firefox$"]        $w1
+assign [class="^qutebrowser"]     $w1
+assign [class="^Zathura"]         $w3
+assign [class="^TexMaker"]        $w3
+assign [class="^LibreOffice"]     $w3
+assign [class="^mpv$"]            $w4
+assign [class="^VirtualBox$"]     $w7
+assign [class="^Gimp$"]           $w8
+assign [class="^Openshot$"]       $w8
+assign [class="^Filezilla$"]      $w8
+assign [class="^Nmapfe"]          $w8
+assign [class="^Wireshark"]       $w8
 
 #Start i3bar to display a workspace bar
 #Uncomment to use the default i3bar status
@@ -234,56 +343,3 @@ client.urgent             $black      $black       $darkwhite      $darkblack   
 #               urgent_workspace   #07090d   #020202       #287373
 #          }
 # }
-
-# Set font for window title bar
-# font pango:lemon 15
-# for_window [class=".*"] title_format "<span font='tewi 8'> ➤ %title</span>"
-
-
-#*************  My apps settings  *********************
-
-# Start apps during startup
-exec --no-startup-id nitrogen --restore  &
-exec --no-startup-id compton --config ~/.compton.conf -b 
-exec --no-startup-id dunst -config $HOME/.config/dunst/dunstrc
-exec --no-startup-id xrdb -load -I$HOME ~/.Xresources
-exec --no-startup-id . $HOME/.local/bin/barstart &
-exec --no-startup-id . $HOME/.local/bin/urxvt_daemon &
-
-# Set per-application border
-for_window [class="^.*"] border pixel 1
-for_window [class="(?i)urxvt"] border pixel 1
-# for_window [class="^.*"] border normal 0
-# for_window [class="(?i)qutebrowser"] border pixel 0
-# for_window [class="(?i)Vivaldi-stable"] border pixel 0
-
-
-# Enable or disable floating
-for_window [class="Arandr"] floating enable
-for_window [class="Lxappearance"] floating enable
-for_window [class="Nitrogen"] floating enable
-for_window [class="Artha"] floating enable
-for_window [instance="dukto"] floating enable
-for_window [class="feh"] floating enable
-for_window [window_role="Preferences"] floating enable
-for_window [window_type="dialog"] floating enable
-for_window [window_type="menu"] floating enable
-for_window [class="Pavucontrol"] floating enable
-# for_window [class="^.*"] floating enable
-
-# Starting apps on a specific workspace
-assign [class="^Tor Browser$"]    $w1
-assign [class="^Firefox$"]        $w1
-assign [class="^qutebrowser"]     $w1
-assign [class="^Zathura"]         $w3
-assign [class="^TexMaker"]        $w3
-assign [class="^LibreOffice"]     $w3
-assign [class="^mpv$"]            $w4
-assign [class="^VirtualBox$"]     $w7
-assign [class="^Gimp$"]           $w8
-assign [class="^Openshot$"]       $w8
-assign [class="^Filezilla$"]      $w8
-assign [class="^Nmapfe"]          $w8
-assign [class="^Wireshark"]       $w8
-
-# vim:filetype=i3
