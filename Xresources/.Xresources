@@ -1,0 +1,173 @@
+
+!    ░█  █░                                                               
+!     ▓▒▒▓   █▒██▒  ███   ▒███▒   ███   █   █   █▒██▒  ▓██▒   ███   ▒███▒ 
+!      ██    ██  █ ▓▓ ▒█  █▒ ░█  █▓ ▓█  █   █   ██  █ ▓█  ▓  ▓▓ ▒█  █▒ ░█ 
+!      ██    █     █   █  █▒░    █   █  █   █   █     █░     █   █  █▒░   
+!     ▒██░   █     █████  ░███▒  █   █  █   █   █     █      █████  ░███▒ 
+!     █▒▒█   █     █         ▒█  █   █  █   █   █     █░     █         ▒█ 
+!    ▒█  █░  █     ▓▓  █  █░ ▒█  █▓ ▓█  █▒ ▓█   █     ▓█  ▓  ▓▓  █  █░ ▒█ 
+!    █▒  ▒█  █      ███▒  ▒███▒   ███   ▒██▒█   █      ▓██▒   ███▒  ▒███▒                                                                       
+                                                                      
+
+!-----------------------------------------------------------------------
+!                         Xft settings
+!-----------------------------------------------------------------------
+
+Xft.dpi:                96
+Xft.antialias:          true
+Xft.rgba:               rgb
+Xft.hinting:            true
+Xft.autohint:           false   
+Xft.hintstyle:          hintslight
+Xft.lcdfilter:          lcddefault
+
+
+!-----------------------------------------------------------------------
+!                        URxvt settings 
+!-----------------------------------------------------------------------
+
+URxvt.internalBorder:    15
+URxvt.externalBorder:    15
+!URxvt.lineSpace:        0
+URxvt*shading:           20
+!URxvt*blurRadius:       20
+URxvt*fading:            20
+URxvt.depth:             32
+URxvt.saveLines:         10000
+URxvt*buffered:	         false
+URxvt*geometry:          96x30
+URxvt*terminalName:      rxvt-unicode-256color
+URxvt*visualBell:        false
+URxvt*transparent:       false
+
+!! Scrollbar
+!URxvt.scrollStyle:      rxvt
+URxvt.scrollBar:         false
+URxvt*scrollTtyOutput:   false
+URxvt*scrollWithBuffer:  true
+URxvt*scrollTtyKeypress: true
+
+!! Fonts
+#define fonts xft:Tewi:pixelsize=8,\
+               xft:Siji:pixelsize=8
+
+URxvt*font:              fonts
+URxvt*boldFont:          fonts
+URxvt*italicFont:        fonts
+URxvt*boldItalicFont:    fonts
+
+URxvt.letterSpace:       true
+
+!! Keybinding
+URxvt.keysym.C-Up:       perl:font-size:increase
+URxvt.keysym.C-Down:     perl:font-size:decrease
+URxvt.keysym.C-S-Up:     perl:font-size:incglobal
+URxvt.keysym.C-S-Down:   perl:font-size:decglobal
+!Home and End keys to jump to the beginning and end of lines
+URxvt*keysym.Home:       \033[1~
+URxvt*keysym.End:        \033[4~
+
+!! Tabs
+URxvt.tabbed.tabbar-bg:  -1
+URxvt.tabbed.tabbar-fg:  -2
+URxvt.tabbed.tab-bg:     -2
+URxvt.tabbed.tab-fg:     -1
+URxvt.tabbed.title-bg:   -1
+URxvt.tabbed.title-fg:   -2
+URxvt.tabbed.autohide:   true
+URxvt.tabbed.new-button: false
+URxvt.tabbed.title:      true
+
+!! Perl extensions
+! url-select (part of urxvt-perls package)
+URxvt.perl-ext-common:      default,clipboard,matcher,keyboard-select
+URxvt.keysym.M-u: perl:     url-select:select_next
+URxvt.url-select.autocopy:  true
+URxvt.url-select.button:    2
+URxvt.url-select.underline: true
+URxvt.url-launcher:         /usr/bin/firefox
+URxvt.matcher.button:       1
+URxvt.matcher.rend.0:       Uline Bold fg5
+
+!! CopyPaste Keys
+URxvt.keysym.Shift-Control-V:   perl:clipboard:paste
+URxvt.keysym.Shift-Control-C:   perl:clipboard:copy
+
+!! Disable the stupid ctrl+shift 'feature'
+URxvt.iso14755:            false
+URxvt.iso14755_52:         false
+
+xterm*locale: true
+xterm*faceName: Monaco for Powerline:size=9:antialias=true
+
+
+!-----------------------------------------------------------------------
+!                        Layout settings 
+!-----------------------------------------------------------------------
+
+!! Cursor
+URxvt.colorUL:             #83a598
+Xcursor.theme:             Adwaita
+
+!! Pointer
+!URxvt.pointerBlank:        true
+
+!! Colors
+! special
+*foreground:   #dbe6ec
+*background:   [95]#2c3643
+*cursorColor:  #ffffff
+
+! black
+*color0:       #2c3643
+*color8:       #67747c
+
+! red
+*color1:       #fa5e5b
+*color9:       #e57977
+
+! green
+*color2:       #16c98d
+*color10:      #c7e6aa
+
+! yellow
+*color3:       #feef6d
+*color11:      #ffc83f
+
+! blue
+*color4:       #288ad6
+*color12:      #8abee5
+
+! magenta
+*color5:       #ff708e
+*color13:      #e28ea0
+
+! cyan
+*color6:       #27dede
+*color14:      #96f7f7
+
+! white
+*color7:       #dbe6ec
+*color15:      #99a9b3   
+
+
+!-----------------------------------------------------------------------
+!                        Rofi settings 
+!-----------------------------------------------------------------------       
+
+rofi.color-enabled: true
+rofi.color-window: argb:be2c3643, argb:be2c3643, #dbe6ec
+rofi.color-normal: argb:0fdf6e3, #dbe6ec, argb:0eee8d5, #288ad6, #2c3643
+rofi.color-active: argb:0fdf6e3, #ffc107, argb:0eee8d5, #ffc107, #263238
+rofi.color-urgent: argb:0fdf6e3, #ef4981, argb:0eee8d5, #ef4981, #eceff1
+rofi.fullscreen: false
+rofi.width: 300
+rofi.padding: 10
+rofi.font: misc gohup 9
+rofi.location: 1
+rofi.bw: 2
+rofi.yoffset: 24
+rofi.fixed-visible-lines: false
+rofi.fixed-num-lines: false
+rofi.sidebar-mode: true
+rofi.modi: window,drun,run,ssh                                                       
