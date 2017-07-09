@@ -1,218 +1,182 @@
-;=====================================================
-;
-;   To learn more about how to configure Polybar
-;   go to https://github.com/jaagr/polybar
-;
-;   The README contains alot of information
-;
-;=====================================================
+;==================================================;
+;						   ;
+;   To learn more about how to configure Polybar   ;
+;   go to https://github.com/jaagr/polybar	   ;
+;						   ;
+;   The README contains alot of information	   ;
+;						   ;
+;==================================================;
 
-[colors]
-; Based on gruvbox colors
-background = #1d2021
-background-alt = #282828
-foreground = #a89984
-foreground-alt = #665c54
-primary = #458588
-secondary = #cc241d
-alert = #689d6a
-white = #ebdbb2
+[settings]
 
-[global/wm]
-margin-top = 0
-margin-bottom = 0
-
-[bar/top]
-;bottom = true
-monitor = ${env:MONITOR:LVDS1}
+[bar/mBar]
+bottom = false
+dock = false
+wm-restack = i3
 width = 100%
-height = 18
-offset-x = 0
-offset-y = 0
-
-;background = ${xrdb:color9}
-background = ${colors.background}
-foreground = ${colors.foreground}
-
-overline-size = 0
-overline-color = #f00
-underline-size = 0
-underline-color = ${colors.primary}
-
-border-bottom-size = 0
-border-bottom-color = ${colors.primary}
-
-spacing = 1
-padding-left = 1
+height = 24
+padding-left = 3
 padding-right = 1
-module-margin-left = 1
-module-margin-right = 1
+module-margin-right = 2
+modules-left = i3 music 
+modules-center = Xwindow
+monitor = eDP1
+line-size = 2
+modules-right = Wifi Battery Clock Shutdown
+background = #B72c3643
+foreground = #dbe6ec
+tray-detached = true
+tray-position = 
+tray-offset-x = -310
+tray-maxsize = 12
+tray-padding = 22
+font-0 = misc gohup:size=9:style=Bold;0
+font-1 = Wuncon Siji:size=9;0
 
-font-0 = Fixed:pixelsize=8;0
-font-1 = unifont:size=8:Tewi:fontformat=truetype;-2
-font-2 = Siji:pixelsize=8;0
-
-modules-left = menu i3
-modules-center = date
-modules-right = cpu memory temperature wlan battery
-
-tray-position = right
-tray-padding = 2
-
+[bar/eBar]
+bottom = false
+dock = false
+wm-restack = i3
+width = 100%
+height = 24
+padding-left = 3
+padding-right = 1
+module-margin-right = 2
+modules-left = i3 music 
+modules-center = Xwindow
+line-size = 2
+modules-right = Wifi Battery Clock Shutdown
+background = #B72c3643
+foreground = #dbe6ec
+tray-detached = true
+tray-position = 
+tray-offset-x = -310
+tray-maxsize = 12
+tray-padding = 22
+font-0 = misc gohup:size=9:style=Bold;0
+font-1 = Wuncon Siji:size=9;0
 
 [module/i3]
 type = internal/i3
+label-focused-padding = 2
+label-unfocused-padding = 2
+label-unfocused-foreground = #4ddbe6ec
+label-urgent-padding = 2
+label-urgent-underline = #ffffc83f
+label-visible-padding = 2
+label-visible-foreground = #4ddbe6ec
+pin-workspaces = true
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
 
-; ws-icon-[0-9]+ = label;icon
-ws-icon-0 = 1;
-ws-icon-1 = 2;
-ws-icon-2 = 3;
-ws-icon-3 = 4;
-ws-icon-4 = 5;
-ws-icon-5 = 6;
-ws-icon-6 = 7;
-ws-icon-7 = 8;
-ws-icon-8 = 9;
-ws-icon-9 = 10;
-ws-icon-default = 
+[module/Battery]
+type = custom/script
+exec = ~/scripts/battery
+click-left = /home/$USER/scripts/popup/bat.sh
 
-strip-wsnumbers = true
+[module/Spotify]
+type = custom/script
+exec = ~/.config/polybar/scripts/spotify.sh
+ellipsis = true
+interval = 5
+maxlen = 40
+click-left = xdotool key super+z
+click-right = xdotool key super+0
+scroll-up = xdotool key super+0
+scroll-down = xdotool key super+z
+format-padding = 1
 
-label-focused = %{F#cc241d}%{F-}%{F#458588}%name%%{F-}
-label-focused-underline = ${colors.primary}
-#label-focused-foreground = ${colors.white}
-label-focused-padding = 1
+[module/Xwindow]
+type = internal/xwindow
+label-maxlen = 40
 
-label-unfocused = %name%
-label-unfocused-padding = 1
-label-unfocused-foreground = ${colors.foreground-alt}
+[module/music]
+type = custom/script
+exec = ~/scripts/nowplaying.sh
+ellipsis = true
+interval = 5
+maxlen = 40
+click-left = ~/scripts/popup/music.sh
+click-right = xdotool key super+shift+period
+scroll-up = xdotool key super+0
+scroll-down = xdotool key super+z
+format-padding = 1
 
-label-urgent = %name%
-label-urgent-foreground = ${colors.alert}
-label-urgent-padding = 1
+[module/Player]
+type = custom/script
+exec = ~/.config/polybar/scripts/player.sh
+ellipsis = true
+interval = 5
+maxlen = 40
+click-left = xdotool key super+z
+click-right = xdotool key super+0
+scroll-up = xdotool key super+0
+scroll-down = xdotool key super+z
+format-padding = 1
 
-label-visible = %name%
-label-visible-padding = 1
-
-[module/cpu]
-type = internal/cpu
-interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-;format-underline = #f90000
-label = %percentage%
-
-[module/memory]
-type = internal/memory
-interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-;format-underline = #4bffdc
-label = %percentage_used%
-
-[module/wlan]
-type = internal/network
-interface = wlp1s0
-interval = 3.0
-
-format-connected = <ramp-signal> <label-connected>
-;format-connected-underline = #5e468c
-;format-disconnected-underline = ${self.format-connected-underline}
-
-label-connected = %essid%
-label-connected-foreground = ${colors.alert}
-label-disconnected = %ifname% disconnected
-label-disconnected-foreground = ${colors.foreground-alt}
-
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
-ramp-signal-foreground = ${colors.alert}
-
-[module/eth]
-type = internal/network
-interface = enp2s0
-interval = 3.0
-
-;format-connected-underline = #287373
-format-connected-prefix = " "
-;format-connected-foreground-foreground = ${colors.foreground-alt}
-label-connected = %local_ip%
-
-;format-disconnected-underline = ${self.format-connected-underline}
-label-disconnected = %ifname% disconnected
-label-disconnected-foreground = ${colors.foreground-alt}
-
-[module/date]
-type = internal/date
+[module/Wifi]
+; type = internal/network
+; interface = wlp1s0
+; interval = 3
+; format-connected = <ramp-signal> <label-connected>
+; ramp-signal-0 = 
+; ramp-signal-1 = 
+; ramp-signal-2 = 
+; ramp-signal-3 = 
+; ramp-signal-4 = 
+; ramp-signal-5 = 
+; format-connected-padding = 2
+; label-connected = %essid%
+; label-disconnected = 
+; format-disconnected-foreground = #4dffffff
+; ;format-disconnected-foreground = #4d000000
+; format-disconnected-padding = 2
+type = custom/script
+exec = ~/scripts/network
 interval = 5
 
-date =
-date-alt = %a %d %b %Y
+[module/Volume]
+type = internal/volume
+mapping = true
+format-volume = <ramp-volume>
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-3 = 
+ramp-headphones-0 = 
+ramp-headphones-1 = 
+format-volume-padding = 1
+label-muted = 
+format-muted-foreground = #4dffffff
+;format-muted-foreground = #4d000000
+format-muted-padding = 1
 
+[module/Search]
+type = custom/script
+exec = echo " "
+click-left = ~/.config/polybar/scripts/search.sh
+format-padding = 1
+
+[module/Keymap]
+type = custom/script
+exec = ~/scripts/keylayout.sh layout
+click-right = ~/scripts/setkeylayout.sh
+label = " %output%"
+
+[module/Clock]
+type = internal/date
+date = %Y-%m-%d
 time = %H:%M
-time-alt = %H:%M:%S
+interval = 5
+format-padding = 2
+label = " %time%"
 
-; format-prefix = 
-format-prefix-foreground = ${colors.foreground-alt}
-;format-underline = #0a6cf5
-
-label = %{F#665c54}────[%{F-} %{F#83a598}%date%%{F-}%{F#b16286} %time%%{F-} %{F#665c54}]────%{F-}
-
-[module/battery]
-type = internal/battery
-battery = BAT1
-adapter = ADP1
-full-at = 80
-
-format-charging = <animation-charging> <label-charging>
-;format-charging-underline = #ffb52a
-
-format-discharging = <ramp-capacity> <label-discharging>
-;format-discharging-underline = ${self.format-charging-underline}
-
-; format-full-prefix = " "
-format-full-prefix-foreground = ${colors.foreground-alt}
-;format-full-underline = ${self.format-charging-underline}
-
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-foreground = ${colors.foreground-alt}
-
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-foreground = ${colors.foreground-alt}
-animation-charging-framerate = 750
-
-[module/temperature]
-type = internal/temperature
-thermal-zone = 0
-warn-temperature = 60
-
-format = <ramp> <label>
-;format-underline = #f50a4d
-format-warn = <ramp> <label-warn>
-;format-warn-underline = ${self.format-underline}
-
-label = %temperature%
-label-warn = %temperature%
-label-warn-foreground = ${colors.secondary}
-
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-foreground = ${colors.foreground-alt}
-
-[module/menu]
-type = custom/menu
-
-menu-0-0 = %{F#689d6a}Todo%{F-}
-menu-0-0-exec = $HOME/.config/admiral.d/popups/todo/todo
-
-label-open = %{F#458588}%{F-}
-label-close = %{F#fb4934}<<%{F-}
-; vim:ft=dosini
+[module/Shutdown]
+type = custom/script
+exec = echo "   "
+click-left = ~/scripts/power
+format-padding = 1
