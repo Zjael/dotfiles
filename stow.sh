@@ -17,3 +17,5 @@ for module in "${MODULES[@]}"; do
     [ "$SILENT" == "false" ] && echo "stow $ARG $module"
     stow $ARG $module
 done
+
+sudo chmod -R 755 /home/$USER/.config
