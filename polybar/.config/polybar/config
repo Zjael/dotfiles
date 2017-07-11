@@ -20,7 +20,7 @@ padding-right = 1
 module-margin-right = 2
 modules-left = i3 music 
 modules-center = Xwindow
-monitor = eDP1
+monitor = VGA-1
 line-size = 2
 modules-right = Wifi Battery Clock Shutdown
 background = #B72c3643
@@ -75,7 +75,7 @@ ws-icon-5 = 6;
 
 [module/Battery]
 type = custom/script
-exec = ~/scripts/battery
+if_exec = ~/scripts/battery
 click-left = /home/$USER/scripts/popup/bat.sh
 
 [module/Spotify]
