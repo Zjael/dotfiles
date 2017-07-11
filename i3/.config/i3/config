@@ -110,7 +110,7 @@ exec notify-send -a i3 "i3 loaded" "Hello, $USER."
 # Custom
 bindsym $mod+y fullscreen disable; floating enable; resize set 320 180; sticky enable; move window to position 1016 558
 bindsym $mod+d exec --no-startup-id rofi -show run 
-bindsym $mod+p exec pcmanfm 
+# bindsym $mod+p exec pcmanfm 
 bindsym $mod+b exec firefox
 
 # Modifier key
