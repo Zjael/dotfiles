@@ -76,7 +76,7 @@ ws-icon-5 = 6;
 [module/Battery]
 type = custom/script
 if_exec = ~/scripts/battery
-click-left = /home/$USER/scripts/popup/bat.sh
+click-left = ~/.config/polybar/scripts/popup/bat.sh
 
 [module/Spotify]
 type = custom/script
@@ -96,11 +96,11 @@ label-maxlen = 40
 
 [module/music]
 type = custom/script
-exec = ~/scripts/nowplaying.sh
+exec = ~/.config/polybar/scripts/nowplaying.sh
 ellipsis = true
 interval = 5
 maxlen = 40
-click-left = ~/scripts/popup/music.sh
+click-left = ~/.config/polybar/scripts/popup/music.sh
 click-right = xdotool key super+shift+period
 scroll-up = xdotool key super+0
 scroll-down = xdotool key super+z
@@ -136,7 +136,7 @@ format-padding = 1
 ; ;format-disconnected-foreground = #4d000000
 ; format-disconnected-padding = 2
 type = custom/script
-exec = ~/scripts/network
+exec = ~/.config/polybar/scripts/network
 interval = 5
 
 [module/Volume]
@@ -155,18 +155,6 @@ format-muted-foreground = #4dffffff
 ;format-muted-foreground = #4d000000
 format-muted-padding = 1
 
-[module/Search]
-type = custom/script
-exec = echo " "
-click-left = ~/.config/polybar/scripts/search.sh
-format-padding = 1
-
-[module/Keymap]
-type = custom/script
-exec = ~/scripts/keylayout.sh layout
-click-right = ~/scripts/setkeylayout.sh
-label = " %output%"
-
 [module/Clock]
 type = internal/date
 date = %Y-%m-%d
@@ -178,5 +166,5 @@ label = " %time%"
 [module/Shutdown]
 type = custom/script
 exec = echo "   "
-click-left = ~/scripts/power
+click-left = ~/.config/polybar/scripts/power
 format-padding = 1
