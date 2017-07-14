@@ -99,8 +99,8 @@ bindsym XF86AudioNext exec --no-startup-id ~/scripts/popup/music.sh next
 bindsym Print exec --no-startup-id scrot "/home/$USER/Documents/scrots/auto/%Y-%m-%d_%H%M%S_scrot.png" -e 'notify-send "scrot" "Screenshot saved as $n"'
 bindsym $mod+Print exec --no-startup-id ~/scripts/scrotsel
 
-# Automatic mounting
-exec --no-startup-id udevil --sync --exec-on-drive "notify-send 'Automount' '%l is now mounted at %d.'" --exec-on-remove "notify-send 'Automount' '%l has been removed.'"
+#AUTOMATIC MOUNTING
+exec --no-startup-id devmon --sync --exec-on-drive "notify-send 'Automount' '%l is now mounted at %d.'" --exec-on-remove "notify-send 'Automount' '%l has been removed.'"
 
 # User Message
 exec notify-send -a i3 "i3 loaded" "Hello, $USER."
