@@ -23,6 +23,7 @@ antigen bundle web-search
 antigen-bundle vagrant
 antigen-bundle asdf
 
+antigen bundle mafredri/zsh-async
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-history-substring-search ./zsh-history-substring-search.zsh
