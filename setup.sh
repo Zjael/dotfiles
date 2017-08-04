@@ -1,5 +1,6 @@
 #!/bin/bash
 
+USER="jakob"
 LANG="en_DK"
 TIMEZONE="Europe/Copenhagen"
 KEYMAP="dk"
@@ -18,7 +19,7 @@ arch_setup() {
     set_keymap
 
     echo "#-- Installing Pacaur --#"
-    install_pacaur
+    sudo -u $USER install_pacaur
 
     echo "#-- Setting Up Firewall --#"
     set_firewall
