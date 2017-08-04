@@ -1,6 +1,5 @@
 #!/bin/bash
 
-USER="jakob"
 LANG="en_DK"
 TIMEZONE="Europe/Copenhagen"
 KEYMAP="dk"
@@ -19,7 +18,7 @@ arch_setup() {
     set_keymap
 
     echo "#-- Installing Pacaur --#"
-    sudo -u $USER install_pacaur
+    install_pacaur
 
     echo "#-- Setting Up Firewall --#"
     set_firewall
@@ -83,14 +82,14 @@ install_pacaur() {
 set_firewall() {
     sudo pacman -S ufw --noconfirm --needed
 
-    iptables -F; iptables -X
-    echo 'y' | ufw reset
-    echo 'y' | ufw enable
-    ufw default deny incoming
-    ufw default deny forward
+    sudo iptables -F; iptables -X
+    sudo echo 'y' | ufw reset
+    sudo echo 'y' | ufw enable
+    sudo ufw default deny incoming
+    sudo ufw default deny forward
 
     # ufw logging on
-    ufw allow 22,80,443/tcp
+    sudo ufw allow 22,80,443/tcp
     # ufw allow $ssh_port/tcp
     # ufw allow from 192.168.10.0/24
 
