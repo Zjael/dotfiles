@@ -55,28 +55,28 @@ set_keymap() {
 }
 
 install_pacaur() {
-    mkdir ~/tmp/pacaur
-    cd ~/tmp/pacaur
+    sudo pacman -Syu
 
-    sudo pacman -Sy --needed base-devel --noconfirm
-    sudo pacman -S binutils make gcc fakeroot --noconfirm --needed
-    sudo pacman -S expac yajl git curl --noconfirm --needed
+    mkdir -p /tmp/pacaur_install
+    cd /tmp/pacaur_install
+
+    sudo pacman -S binutils make gcc fakeroot pkg-config --noconfirm --needed
+    sudo pacman -S expac yajl git --noconfirm --needed
 
     # Install "cower" from AUR
     if [ ! -n "$(pacman -Qs cower)" ]; then
-        gpg --recv-keys --keyserver hkp://pgp.mit.edu 1EB2638FF56C0C53
         curl -o PKGBUILD https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=cower
-        makepkg -si PKGBUILD --noconfirm
+        makepkg PKGBUILD --skippgpcheck --install --needed
     fi
 
     # Install "pacaur" from AUR
     if [ ! -n "$(pacman -Qs pacaur)" ]; then
         curl -o PKGBUILD https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=pacaur
-        makepkg -si PKGBUILD --noconfirm
+        makepkg PKGBUILD --install --needed
     fi
 
     cd ~
-    sudo rm -r ~/tmp/pacaur
+    rm -r /tmp/pacaur_install
 }
 
 set_firewall() {
