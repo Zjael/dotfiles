@@ -40,13 +40,13 @@ arch_setup() {
 }
 
 set_locale() {
-    echo "LANG=$LANG.UTF-8" >> /etc/locale.conf
-    echo "LANG=$LANG.UTF-8 UTF-8" >> /etc/locale.gen
+    echo "LANG=$LANG.UTF-8" >/etc/locale.conf
+    sed -i "/#$LANG/s/^#//" /etc/locale.gen
     locale-gen
 }
 
 set_timezone() {
-    ln -sT "/usr/share/zoneinfo/$TIMEZONE" /etc/localtime
+    ln -sf /usr/share/zoneinfo/$TIMEZONE /etc/localtime
 }
 
 set_keymap() {
@@ -136,7 +136,7 @@ install_packages() {
     packages+=' fzf rsync'
 
     # Desktop
-    packages+=' waterfox-bin spotify blockify'
+    packages+=' waterfox-bin spotify blockify emacs'
 
     # Enviroment
     packages+=' i3-gaps i3lock-fancy-git polybar'
