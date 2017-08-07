@@ -30,17 +30,16 @@ arch_setup() {
     set_hwclock
 
     echo "#-- Installing Packages --#"
-    install_packages
+    #install_packages
 
     echo "#-- Setting Up Shell --#"
     set_shell
 }
 
 set_locale() {
-    echo LANG=$LANG.UTF-8 >> /etc/locale.conf
-    echo LANGUAGE=$LANG >> /etc/locale.conf
+    echo "LANG=$LANG.UTF-8" >> /etc/locale.conf
+    echo "LANGUAGE=$LANG" >> /etc/locale.conf
     echo "$LANG.UTF-8 UTF-8" >> /etc/locale.gen
-
     locale-gen
 }
 
@@ -51,31 +50,27 @@ set_timezone() {
 set_keymap() {
 	loadkeys $KEYMAP
     echo "KEYMAP=$KEYMAP" >> /etc/vconsole.conf
+    setxkbmap $KEYMAP
 }
 
 set_firewall() {
     sudo pacman -S ufw --noconfirm --needed
-
     iptables -F; iptables -X
     echo 'y' | ufw reset
     echo 'y' | ufw enable
     ufw default deny incoming
     ufw default deny forward
-
-    # ufw logging on
+    #ufw logging on
     ufw allow 22,80,443/tcp
-    # ufw allow $ssh_port/tcp
-    # ufw allow from 192.168.10.0/24
-
-    systemctl enable --now ufw.service
+    sudo systemctl enable --now ufw
 }
 
 set_ssh() {
 	sudo pacman -S openssh --noconfirm --needed
-
-	sed -i "s/#Port 22/Port $SSH_PORT/g" /etc/ssh/sshd_config
-	ufw allow from 192.168.10.0/24 to any port $ssh_port
-	sudo systemctl --now enable sshd
+    echo -e "\r\nPort $SSH_PORT" >> /etc/ssh/sshd_config
+    echo "PermitRootLogin no" >> /etc/ssh/sshd_config
+	ufw allow from 192.168.10.0/24 to any port $SSH_PORT
+	sudo systemctl enable --now sshd
 }
 
 set_hwclock() {
@@ -93,8 +88,11 @@ set_mirrorlist() {
 
 install_packages() {
     local packages=''
+    # System
+    packages+=' networkmanager'
+
     # Terminal
-    packages+=' zsh tmux tree ranger autojump thefuck micro'
+    packages+=' tmux tree ranger autojump thefuck micro'
 
     # General utilities/libraries
     packages+=' xclip curl httpie htop nethogs udevil rar unrar lm_sensors scrot neofetch'
@@ -112,7 +110,7 @@ install_packages() {
     packages+=' fzf rsync'
 
     # Xorg
-    packages+=' xbacklight xorg xorg-xinit'
+    packages+=' xorg xorg-xinit xbacklight'
 
     # Desktop
     packages+=' waterfox-bin spotify blockify emacs'
@@ -135,7 +133,8 @@ install_packages() {
 }
 
 set_shell() {
-    chsh -s `which zsh`
+    sudo pacman -S zsh --noconfirm --needed
+    chsh -s $(which zsh)
 }
 
 arch_setup
