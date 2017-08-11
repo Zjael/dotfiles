@@ -2,9 +2,9 @@
 LANG="en_DK"
 TIMEZONE="Europe/Copenhagen"
 KEYMAP="dk"
-
 SSH_PORT="505050"
 MIRROR_LOCATION="DK"
+USERNAME="jakob" # For non-root privileges
 
 arch_setup() {
     if ! [ $(id -u) = 0 ]; then
@@ -12,37 +12,38 @@ arch_setup() {
         exit 1
     fi
     sudo pacman -Syu
+
     # TODO: Try make the functions below run as sudo separtately... sudo set_locale
     # Comment or Uncomment each of these functions to your liking
     echo "#-- Setting Locale --#"
-    sudo set_locale
+    set_locale
 
     echo "#-- Setting Timezone --#"
-    sudo set_timezone
+    set_timezone
 
     echo "#-- Setting Up Hardware Clock --#"
-    sudo set_hwclock
+    set_hwclock
 
     echo "#-- Setting Keymap --#"
-    sudo set_keymap
+    set_keymap
 
     echo "#-- Setting Up Firewall --#"
-    sudo set_firewall
+    set_firewall
 
     echo "#-- Setting Up SSH --#"
-    sudo set_ssh
+    set_ssh
 
     echo "#-- Setting Up Mirrorlist --#"
-    sudo set_mirrorlist
+    set_mirrorlist
 
     echo "#-- Setting Up Shell --#"
-    sudo setup_shell
+    setup_shell
 
     echo "#-- Setting Up Laptop --#"
-    #sudo setup_laptop   # Setups TLP, Thermald & Microcode
+    #setup_laptop   # Setups TLP, Thermald & Microcode
 
     echo "#-- Setting Up Fstrim --#"
-    #sudo setup_fstrim   # Weekly SSD maintenance, make sure your SSD supports TRIM if unsure run 'lsblk -D'
+    #setup_fstrim   # Weekly SSD maintenance, make sure your SSD supports TRIM if unsure run 'lsblk -D'
 
     echo "#-- Installing Pacaur --#"
     install_pacaur
@@ -51,7 +52,7 @@ arch_setup() {
     install_packages
 
     echo "#-- Setting Up Services --#"
-    #sudo setup_services
+    #setup_services
 
     echo "#-- Installing Python Packages --#"
     python_packages
@@ -137,13 +138,13 @@ install_pacaur() {
     # Install "cower" from AUR
     if [ ! -n "$(pacman -Qs cower)" ]; then
         curl -o PKGBUILD https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=cower
-        makepkg PKGBUILD --skippgpcheck --install --needed
+        sudo -u $USERNAME makepkg PKGBUILD --skippgpcheck --install --needed
     fi
 
     # Install "pacaur" from AUR
     if [ ! -n "$(pacman -Qs pacaur)" ]; then
         curl -o PKGBUILD https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=pacaur
-        makepkg PKGBUILD --install --needed
+        sudo -u $USERNAME makepkg PKGBUILD --install --needed
     fi
 
     cd ~
@@ -156,7 +157,7 @@ install_packages() {
     packages+=' networkmanager lm_sensors thermald redshift curl wget httpie htop nethogs udevil rar unrar scrot neofetch'
 
     # Terminal
-    packages+=' zplug tmux tree ranger autojump thefuck micro'
+    packages+=' zplug tmux tree ranger autojump thefuck micro bash-snippets'
     packages+=' rtv'
 
     # Development
@@ -191,7 +192,7 @@ install_packages() {
 
     #pacaur -S --needed --noconfirm --noedit $packages
     for pkg in $packages; do
-        pacaur -S --needed --noconfirm --noedit $pkg
+        sudo -u $USERNAME pacaur -S --needed --noconfirm --noedit $pkg
     done
 }
 
