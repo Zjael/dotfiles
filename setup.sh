@@ -12,37 +12,37 @@ arch_setup() {
         exit 1
     fi
     sudo pacman -Syu
-
+    # TODO: Try make the functions below run as sudo separtately... sudo set_locale
     # Comment or Uncomment each of these functions to your liking
     echo "#-- Setting Locale --#"
-    set_locale
+    sudo set_locale
 
     echo "#-- Setting Timezone --#"
-    set_timezone
+    sudo set_timezone
 
     echo "#-- Setting Up Hardware Clock --#"
-    set_hwclock
+    sudo set_hwclock
 
     echo "#-- Setting Keymap --#"
-    set_keymap
+    sudo set_keymap
 
     echo "#-- Setting Up Firewall --#"
-    set_firewall
+    sudo set_firewall
 
     echo "#-- Setting Up SSH --#"
-    set_ssh
+    sudo set_ssh
 
     echo "#-- Setting Up Mirrorlist --#"
-    set_mirrorlist
+    sudo set_mirrorlist
 
     echo "#-- Setting Up Shell --#"
-    setup_shell
+    sudo setup_shell
 
     echo "#-- Setting Up Laptop --#"
-    #setup_laptop   # Setups TLP, Thermald & Microcode
+    #sudo setup_laptop   # Setups TLP, Thermald & Microcode
 
     echo "#-- Setting Up Fstrim --#"
-    #setup_fstrim   # Weekly SSD maintenance, make sure your SSD supports TRIM if unsure run 'lsblk -D'
+    #sudo setup_fstrim   # Weekly SSD maintenance, make sure your SSD supports TRIM if unsure run 'lsblk -D'
 
     echo "#-- Installing Pacaur --#"
     install_pacaur
@@ -51,7 +51,7 @@ arch_setup() {
     install_packages
 
     echo "#-- Setting Up Services --#"
-    #setup_services
+    #sudo setup_services
 
     echo "#-- Installing Python Packages --#"
     python_packages
@@ -126,13 +126,73 @@ setup_fstrim() {
 }
 
 install_pacaur() {
-    chmod +x install_pacaur.sh
-    ./install_pacaur.sh
+    sudo pacman -Syu
+
+    mkdir -p /tmp/pacaur_install
+    cd /tmp/pacaur_install
+
+    sudo pacman -S binutils make gcc fakeroot pkg-config --noconfirm --needed
+    sudo pacman -S expac yajl git --noconfirm --needed
+
+    # Install "cower" from AUR
+    if [ ! -n "$(pacman -Qs cower)" ]; then
+        curl -o PKGBUILD https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=cower
+        makepkg PKGBUILD --skippgpcheck --install --needed
+    fi
+
+    # Install "pacaur" from AUR
+    if [ ! -n "$(pacman -Qs pacaur)" ]; then
+        curl -o PKGBUILD https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=pacaur
+        makepkg PKGBUILD --install --needed
+    fi
+
+    cd ~
+    rm -r /tmp/pacaur_install
 }
 
 install_packages() {
-    chmod +x install_packages.sh
-    ./install_packages.sh
+    local packages=''
+    # System utilities
+    packages+=' networkmanager lm_sensors thermald redshift curl wget httpie htop nethogs udevil rar unrar scrot neofetch'
+
+    # Terminal
+    packages+=' zplug tmux tree ranger autojump thefuck micro'
+    packages+=' rtv'
+
+    # Development
+    packages+=' git gist tig'
+    packages+=' python python-pip python-setuptools python-virtualenv python2 python2-pip python2-setuptools python2-virtualenv python-virtualenvwrapper'
+    packages+=' nodejs npm'
+
+    # Security
+    packages+=' lynis firejail'
+
+    # Storage & Data
+    packages+=' fzf rsync'
+
+    # Xorg
+    packages+=' xorg xorg-xinit xbacklight'
+
+    # Desktop
+    packages+=' waterfox-bin spotify blockify emacs xclip cups'
+
+    # For fun
+    packages+=' cowsay lolcat fortune-mod'
+
+    # Enviroment
+    packages+=' i3-gaps i3lock-fancy-git polybar'
+    packages+=' stow termite rofi feh conky compton dunst rxvt-unicode rxvt-unicode-terminfo'
+
+    # Themes
+    packages+=' gtk-arc-flatabulous-theme-git paper-icon-theme-git siji-git'
+
+    # Fonts
+    packages+=' powerline-fonts powerline nerd-fonts-complete'
+
+    #pacaur -S --needed --noconfirm --noedit $packages
+    for pkg in $packages; do
+        pacaur -S --needed --noconfirm --noedit $pkg
+    done
 }
 
 setup_services() {
