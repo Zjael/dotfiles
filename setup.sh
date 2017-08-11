@@ -1,5 +1,4 @@
 #!/bin/bash
-
 LANG="en_DK"
 TIMEZONE="Europe/Copenhagen"
 KEYMAP="dk"
@@ -8,11 +7,21 @@ SSH_PORT="505050"
 MIRROR_LOCATION="DK"
 
 arch_setup() {
+    if ! [ $(id -u) = 0 ]; then
+        echo "ERROR: Script requires to be run as sudo or root."
+        exit 1
+    fi
+    sudo pacman -Syu
+
+    # Comment or Uncomment each of these functions to your liking
     echo "#-- Setting Locale --#"
     set_locale
 
     echo "#-- Setting Timezone --#"
     set_timezone
+
+    echo "#-- Setting Up Hardware Clock --#"
+    set_hwclock
 
     echo "#-- Setting Keymap --#"
     set_keymap
@@ -25,20 +34,28 @@ arch_setup() {
 
     echo "#-- Setting Up Mirrorlist --#"
     set_mirrorlist
-    
-    echo "#-- Setting Up Hardware Clock --#"
-    set_hwclock
-
-    echo "#-- Installing Packages --#"
-    #install_packages
 
     echo "#-- Setting Up Shell --#"
-    set_shell
+    setup_shell
+
+    echo "#-- Setting Up Laptop --#"
+    #setup_laptop   # Setups TLP, Thermald & Microcode
+
+    echo "#-- Setting Up Fstrim --#"
+    #setup_fstrim   # Weekly SSD maintenance, make sure your SSD supports TRIM if unsure run 'lsblk -D'
+
+    echo "#-- Installing Packages --#"
+    install_packages
+
+    echo "#-- Setting Up Services --#"
+    #setup_services
+
+    echo "#-- Installing Python Packages --#"
+    python_packages
 }
 
 set_locale() {
-    echo "LANG=$LANG.UTF-8" >> /etc/locale.conf
-    echo "LANGUAGE=$LANG" >> /etc/locale.conf
+    echo "LANG=$LANG.UTF-8" > /etc/locale.conf
     echo "$LANG.UTF-8 UTF-8" >> /etc/locale.gen
     locale-gen
 }
@@ -47,10 +64,16 @@ set_timezone() {
     ln -sf /usr/share/zoneinfo/$TIMEZONE /etc/localtime
 }
 
+set_hwclock() {
+    sudo pacman -S ntp --noconfirm --needed
+    timedatectl set-ntp true
+    hwclock --systohc --utc
+    systemctl enable --now ntpd.service
+}
+
 set_keymap() {
-	loadkeys $KEYMAP
-    echo "KEYMAP=$KEYMAP" >> /etc/vconsole.conf
-    setxkbmap $KEYMAP
+    echo "KEYMAP=$KEYMAP" > /etc/vconsole.conf
+    loadkeys $KEYMAP
 }
 
 set_firewall() {
@@ -62,7 +85,7 @@ set_firewall() {
     ufw default deny forward
     #ufw logging on
     ufw allow 22,80,443/tcp
-    sudo systemctl enable --now ufw
+    systemctl enable --now ufw.service
 }
 
 set_ssh() {
@@ -70,14 +93,7 @@ set_ssh() {
     echo -e "\r\nPort $SSH_PORT" >> /etc/ssh/sshd_config
     echo "PermitRootLogin no" >> /etc/ssh/sshd_config
 	ufw allow from 192.168.10.0/24 to any port $SSH_PORT
-	sudo systemctl enable --now sshd
-}
-
-set_hwclock() {
-    sudo pacman -S ntp --noconfirm --needed
-    timedatectl set-ntp true
-    hwclock --systohc --utc
-    sudo systemctl enable --now ntpd
+	sudo systemctl enable --now sshd.service
 }
 
 set_mirrorlist() {
@@ -86,25 +102,42 @@ set_mirrorlist() {
     reflector --country $MIRROR_LOCATION -p http --save /etc/pacman.d/mirrorlist
 }
 
+setup_shell() {
+    sudo pacman -S zsh --noconfirm --needed
+    chsh -s $(which zsh)
+}
+
+setup_laptop () {
+    sudo pacman -S xf86-input-synaptics tlp --noconfirm --needed
+	systemctl enable --now tlp
+	systemctl enable --now tlp-sleep
+	systemctl mask --now systemd-rfkill.service systemd-rfkill.socket
+
+    sudo pacman -S intel-ucode --noconfirm --needed
+    sudo grub-mkconfig -o /boot/grub/grub.cfg
+}
+
+setup_fstrim() {
+    pacman -S util-linux --noconfirm --needed
+    systemctl enable --now fstrim fstrim.timer
+}
+
 install_packages() {
     local packages=''
-    # System
-    packages+=' networkmanager'
+    # System utilities
+    packages+=' networkmanager lm_sensors thermald redshift curl wget httpie htop nethogs udevil rar unrar scrot neofetch'
 
     # Terminal
-    packages+=' tmux tree ranger autojump thefuck micro'
-
-    # General utilities/libraries
-    packages+=' xclip curl httpie htop nethogs udevil rar unrar lm_sensors scrot neofetch'
+    packages+=' zplug tmux tree ranger autojump thefuck micro'
+    packages+=' rtv'
 
     # Development
-    packages+=' git gist'
+    packages+=' git gist tig'
+    packages+=' python python-pip python-setuptools python-virtualenv python2 python2-pip python2-setuptools python2-virtualenv python-virtualenvwrapper'
+    packages+=' nodejs npm'
 
     # Security
-    packages+=' lynis'
-
-    # Config
-    packages+=' stow antigen-git'
+    packages+=' lynis firejail'
 
     # Storage & Data
     packages+=' fzf rsync'
@@ -113,28 +146,39 @@ install_packages() {
     packages+=' xorg xorg-xinit xbacklight'
 
     # Desktop
-    packages+=' waterfox-bin spotify blockify emacs'
+    packages+=' waterfox-bin spotify blockify emacs xclip cups'
+
+    # For fun
+    packages+=' cowsay lolcat fortune-mod'
 
     # Enviroment
     packages+=' i3-gaps i3lock-fancy-git polybar'
-    packages+=' termite rofi feh conky compton dunst  rxvt-unicode rxvt-unicode-terminfo'
+    packages+=' stow termite rofi feh conky compton dunst rxvt-unicode rxvt-unicode-terminfo'
 
     # Themes
     packages+=' gtk-arc-flatabulous-theme-git paper-icon-theme-git siji-git'
 
     # Fonts
     packages+=' powerline-fonts powerline nerd-fonts-complete'
-    
-    # For laptops
-    packages+=' xf86-input-synaptics tlp thermald'
 
-
-    pacaur -S --needed --noconfirm --noedit $packages
+    #pacaur -S --needed --noconfirm --noedit $packages
+    for pkg in $packages; do
+        pacaur -S --needed --noconfirm --noedit $pkg
+    done
 }
 
-set_shell() {
-    sudo pacman -S zsh --noconfirm --needed
-    chsh -s $(which zsh)
+setup_services() {
+    sensors-detect
+    systemctl enable --now thermald.service
+    systemctl enable redshift.service
+    systemctl enable --now org.cups.cupsd.service
+}
+
+python_packages() {
+    pip install howdoi
+    pip install tldr
+    pip install jrnl
+    pip3 install buku
 }
 
 arch_setup
