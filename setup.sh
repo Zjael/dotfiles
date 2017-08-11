@@ -12,7 +12,6 @@ arch_setup() {
     fi
     sudo pacman -Syu
 
-    # TODO: Try make the functions below run as sudo separtately... sudo set_locale
     # Comment or Uncomment each of these functions to your liking
     echo "#-- Setting Locale --#"
     set_locale
