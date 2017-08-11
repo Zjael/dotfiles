@@ -128,7 +128,7 @@ setup_fstrim() {
 install_pacaur() {
     sudo pacman -Syu
 
-    su -u $SUDO_USER -c "mkdir -p /tmp/pacaur_install"
+    su $SUDO_USER -c "mkdir -p /tmp/pacaur_install"
     cd /tmp/pacaur_install
 
     sudo pacman -S binutils make gcc fakeroot pkg-config --noconfirm --needed
@@ -136,14 +136,14 @@ install_pacaur() {
 
     # Install "cower" from AUR
     if [ ! -n "$(pacman -Qs cower)" ]; then
-        su -u $SUDO_USER -c "curl -o PKGBUILD https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=cower"
-        su -u $SUDO_USER -c "makepkg PKGBUILD --skippgpcheck --install --needed"
+        su $SUDO_USER -c "curl -o PKGBUILD https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=cower"
+        su $SUDO_USER -c "makepkg PKGBUILD --skippgpcheck --install --needed"
     fi
 
     # Install "pacaur" from AUR
     if [ ! -n "$(pacman -Qs pacaur)" ]; then
-        su -u $SUDO_USER -c "curl -o PKGBUILD https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=pacaur"
-        su -u $SUDO_USER -c "makepkg PKGBUILD --install --needed"
+        su $SUDO_USER -c "curl -o PKGBUILD https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=pacaur"
+        su $SUDO_USER -c "makepkg PKGBUILD --install --needed"
     fi
 
     cd ~
