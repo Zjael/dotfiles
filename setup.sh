@@ -128,7 +128,8 @@ setup_fstrim() {
 install_pacaur() {
     sudo pacman -Syu
 
-    su $SUDO_USER -c "mkdir -p /tmp/pacaur_install"
+    #sudo -u $SUDO_USER mkdir -p /tmp/pacaur_install
+    mkdir -p /tmp/pacaur_install
     cd /tmp/pacaur_install
 
     sudo pacman -S binutils make gcc fakeroot pkg-config --noconfirm --needed
@@ -136,14 +137,14 @@ install_pacaur() {
 
     # Install "cower" from AUR
     if [ ! -n "$(pacman -Qs cower)" ]; then
-        su $SUDO_USER -c "curl -o PKGBUILD https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=cower"
-        su $SUDO_USER -c "makepkg PKGBUILD --skippgpcheck --install --needed"
+        curl -o PKGBUILD https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=cower
+        sudo -u $SUDO_USER makepkg PKGBUILD --skippgpcheck --install --needed
     fi
 
     # Install "pacaur" from AUR
     if [ ! -n "$(pacman -Qs pacaur)" ]; then
-        su $SUDO_USER -c "curl -o PKGBUILD https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=pacaur"
-        su $SUDO_USER -c "makepkg PKGBUILD --install --needed"
+        curl -o PKGBUILD https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=pacaur
+        sudo -u $SUDO_USER makepkg PKGBUILD --install --needed
     fi
 
     cd ~
@@ -190,7 +191,7 @@ install_packages() {
     packages+=' powerline-fonts powerline nerd-fonts-complete'
 
     for pkg in $packages; do
-        sudo -u $SUDO_USER bash -c "pacaur -S --needed --noconfirm --noedit $pkg"
+        sudo -u $SUDO_USER pacaur -S --needed --noconfirm --noedit $pkg
     done
 }
 
