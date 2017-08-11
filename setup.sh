@@ -4,7 +4,6 @@ TIMEZONE="Europe/Copenhagen"
 KEYMAP="dk"
 SSH_PORT="505050"
 MIRROR_LOCATION="DK"
-USERNAME="jakob" # For non-root privileges
 
 arch_setup() {
     if ! [ $(id -u) = 0 ]; then
@@ -138,13 +137,13 @@ install_pacaur() {
     # Install "cower" from AUR
     if [ ! -n "$(pacman -Qs cower)" ]; then
         curl -o PKGBUILD https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=cower
-        sudo -u $USERNAME makepkg PKGBUILD --skippgpcheck --install --needed
+        sudo -u $SUDO_USER bash -c "makepkg PKGBUILD --skippgpcheck --install --needed"
     fi
 
     # Install "pacaur" from AUR
     if [ ! -n "$(pacman -Qs pacaur)" ]; then
         curl -o PKGBUILD https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=pacaur
-        sudo -u $USERNAME makepkg PKGBUILD --install --needed
+        sudo -u $SUDO_USER bash -c "makepkg PKGBUILD --install --needed"
     fi
 
     cd ~
@@ -190,9 +189,8 @@ install_packages() {
     # Fonts
     packages+=' powerline-fonts powerline nerd-fonts-complete'
 
-    #pacaur -S --needed --noconfirm --noedit $packages
     for pkg in $packages; do
-        sudo -u $USERNAME pacaur -S --needed --noconfirm --noedit $pkg
+        sudo -u $SUDO_USER bash -c "pacaur -S --needed --noconfirm --noedit $pkg"
     done
 }
 
