@@ -50,7 +50,7 @@ arch_setup() {
     install_packages
 
     echo "#-- Setting Up Services --#"
-    #setup_services
+    setup_services
 
     echo "#-- Installing Python Packages --#"
     python_packages
@@ -173,13 +173,13 @@ install_packages() {
     packages+=' xorg xorg-xinit xbacklight'
 
     # Desktop
-    packages+=' waterfox-bin spotify blockify emacs xclip cups'
+    packages+=' vivaldi spotify blockify emacs xclip cups'
 
     # For fun
     packages+=' cowsay lolcat fortune-mod'
 
     # Enviroment
-    packages+=' i3-gaps i3lock-fancy-git polybar'
+    packages+=' i3 i3lock-fancy-git polybar'
     packages+=' stow termite rofi feh conky compton dunst rxvt-unicode rxvt-unicode-terminfo'
 
     # Themes
@@ -205,6 +205,7 @@ python_packages() {
     pip install tldr
     pip install jrnl
     pip3 install buku
+    pip3 install cryptop
 }
 
 arch_setup
