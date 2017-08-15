@@ -34,6 +34,9 @@ arch_setup() {
     echo "#-- Setting Up Mirrorlist --#"
     set_mirrorlist
 
+    echo "#-- Setting Up Bootloader --#"
+    #set_bootloader
+
     echo "#-- Setting Up Shell --#"
     setup_shell
 
@@ -104,6 +107,18 @@ set_mirrorlist() {
     reflector --country $MIRROR_LOCATION -p http --save /etc/pacman.d/mirrorlist
 }
 
+set_bootloader() {
+    pacman -S refind-efi
+    refind-install
+
+    mkdir /boot/EFI/refind/themes
+    cd /boot/EFI/refind/themes
+    git clone https://github.com/EvanPurkhiser/rEFInd-minimal
+
+    chmod -R 755 /boot/EFI/refind
+    echo 'include themes/rEFInd-minimal/theme.conf' >> /boot/EFI/refind/refind.conf
+}
+
 setup_shell() {
     sudo pacman -S zsh --noconfirm --needed
     chsh -s $(which zsh)
@@ -152,7 +167,7 @@ install_pacaur() {
 install_packages() {
     local packages=''
     # System utilities
-    packages+=' networkmanager lm_sensors thermald redshift curl wget httpie htop nethogs udevil rar unrar scrot neofetch'
+    packages+=' networkmanager lm_sensors thermald curl wget httpie htop nethogs udevil rar unrar scrot neofetch'
 
     # Terminal
     packages+=' zplug tmux tree ranger autojump thefuck micro bash-snippets'
@@ -180,7 +195,7 @@ install_packages() {
 
     # Enviroment
     packages+=' i3-gaps i3lock-fancy-git polybar'
-    packages+=' stow termite rofi feh conky compton dunst rxvt-unicode rxvt-unicode-terminfo'
+    packages+=' stow redshift termite rofi feh conky compton dunst rxvt-unicode rxvt-unicode-terminfo'
 
     # Themes
     packages+=' gtk-arc-flatabulous-theme-git paper-icon-theme-git siji-git'
@@ -196,7 +211,7 @@ install_packages() {
 setup_services() {
     sensors-detect
     systemctl enable --now thermald.service
-    systemctl enable redshift.service
+    systemctl enable --$SUDO_USER redshift.service
     systemctl enable --now org.cups.cupsd.service
 }
 
