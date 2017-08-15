@@ -179,7 +179,7 @@ install_packages() {
     packages+=' cowsay lolcat fortune-mod'
 
     # Enviroment
-    packages+=' i3 i3lock-fancy-git polybar'
+    packages+=' i3-gaps i3lock-fancy-git polybar'
     packages+=' stow termite rofi feh conky compton dunst rxvt-unicode rxvt-unicode-terminfo'
 
     # Themes
