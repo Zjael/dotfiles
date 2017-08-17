@@ -14,31 +14,31 @@ arch_setup() {
 
     # Comment or Uncomment each of these functions to your liking
     echo "#-- Setting Locale --#"
-    set_locale
+    #set_locale
 
     echo "#-- Setting Timezone --#"
-    set_timezone
+    #set_timezone
 
     echo "#-- Setting Up Hardware Clock --#"
-    set_hwclock
+    #set_hwclock
 
     echo "#-- Setting Keymap --#"
-    set_keymap
+    #set_keymap
 
     echo "#-- Setting Up Firewall --#"
-    set_firewall
+    #set_firewall
 
     echo "#-- Setting Up SSH --#"
-    set_ssh
+    #set_ssh
 
     echo "#-- Setting Up Mirrorlist --#"
-    set_mirrorlist
+    #set_mirrorlist
 
     echo "#-- Setting Up Bootloader --#"
     #set_bootloader
 
     echo "#-- Setting Up Shell --#"
-    setup_shell
+    #setup_shell
 
     echo "#-- Setting Up Laptop --#"
     #setup_laptop   # Setups TLP, Thermald & Microcode
@@ -47,16 +47,16 @@ arch_setup() {
     #setup_fstrim   # Weekly SSD maintenance, make sure your SSD supports TRIM if unsure run 'lsblk -D'
 
     echo "#-- Installing Pacaur --#"
-    install_pacaur
+    #install_pacaur
 
     echo "#-- Installing Packages --#"
     install_packages
 
     echo "#-- Setting Up Services --#"
-    setup_services
+    #setup_services
 
     echo "#-- Installing Python Packages --#"
-    python_packages
+    #python_packages
 }
 
 set_locale() {
@@ -195,13 +195,13 @@ install_packages() {
 
     # Enviroment
     packages+=' i3-gaps i3lock-fancy-git polybar'
-    packages+=' stow redshift termite rofi feh conky compton dunst rxvt-unicode rxvt-unicode-terminfo'
+    packages+=' stow redshift termite rofi nitrogen conky compton dunst rxvt-unicode rxvt-unicode-terminfo'
 
     # Themes
-    packages+=' gtk-arc-flatabulous-theme-git paper-icon-theme-git siji-git'
+    packages+=' gtk-arc-flatabulous-theme-git paper-icon-theme-git siji-git ttf-material-icons'
 
     # Fonts
-    packages+=' powerline-fonts powerline nerd-fonts-complete'
+    packages+=' nerd-fonts-complete bdf-tewi-git'
 
     for pkg in $packages; do
         sudo -u $SUDO_USER pacaur -S --needed --noconfirm --noedit $pkg

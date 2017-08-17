@@ -1,170 +1,247 @@
-;==================================================;
-;						   ;
-;   To learn more about how to configure Polybar   ;
-;   go to https://github.com/jaagr/polybar	   ;
-;						   ;
-;   The README contains alot of information	   ;
-;						   ;
-;==================================================;
+;=====================================================
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/jaagr/polybar
+;
+;   The README contains alot of information
+;
+;=====================================================
 
-[settings]
+[global/wm]
+margin-top = 8
+margin-bottom = 0 
+override-redirect = true
 
-[bar/mBar]
-bottom = false
-dock = false
-wm-restack = i3
+[bar/top]
 width = 100%
-height = 24
-padding-left = 3
-padding-right = 1
-module-margin-right = 2
-modules-left = i3 music 
-modules-center = Xwindow
-;monitor = ${env:MONITOR:fallback-value}
-line-size = 2
-modules-right = Wifi Battery Clock Shutdown
-background = #B72c3643
-foreground = #dbe6ec
-tray-detached = true
-tray-position = 
-tray-offset-x = -310
-tray-maxsize = 12
-tray-padding = 22
-font-0 = misc gohup:size=9:style=Bold;0
-font-1 = Wuncon Siji:size=9;0
+height = 23
+offset-x = 0
+offset-y = 0
 
-[bar/eBar]
-bottom = false
-dock = false
-wm-restack = i3
-width = 100%
-height = 24
-padding-left = 3
-padding-right = 1
-module-margin-right = 2
-modules-left = i3 music 
-modules-center = Xwindow
-line-size = 2
-modules-right = Wifi Battery Clock Shutdown
-background = #B72c3643
-foreground = #dbe6ec
-tray-detached = true
-tray-position = 
-tray-offset-x = -310
-tray-maxsize = 12
-tray-padding = 22
-font-0 = misc gohup:size=9:style=Bold;0
-font-1 = Wuncon Siji:size=9;0
+locale = en_DK.UTF-8
+background = #3a3c61
+foreground = #678bdc
+
+font-0 = lucy tewii:size=12:antialias=false;1
+font-1 = FontAwesome:size=12:antialias=false;2
+font-2 = MaterialIcons-Regular:size=12:antialias=false;3
+font-3 = Misc Stlarch:size=12:antialias=false;4
+
+modules-left = date1 volume battery cpu 
+modules-center = hlws
+modules-right = previous music next powermenu
+
+tray-position = left
+tray-padding = 1
+tray-transparent = false
+tray-detached = false
+tray-background = #3a3c61
+
+overline-size = 2
+overline-color = #bc92f8
+underline-size = 2
+underline-color = #bc92f8
+
+radius = 2
+
+spacing = 1
+padding-left = 1
+padding-right = 0
+module-margin-left = 1
+module-margin-right = 0
+
+[module/volume]
+type = internal/volume
+
+format-volume = <ramp-volume><label-volume> 
+module-margin-right = 0
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 =
+ramp-volume-3 =
+
+format-volume-foreground = #ffbc69
+format-volume-background = #3a3c61
+
+label-muted = 🔇muted
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:30:...%
+module-margin-left = 2
+format-padding = 2
+format-background = #00eeeeee
 
 [module/i3]
 type = internal/i3
-label-focused-padding = 2
-label-unfocused-padding = 2
-label-unfocused-foreground = #4ddbe6ec
-label-urgent-padding = 2
-label-urgent-underline = #ffffc83f
-label-visible-padding = 2
-label-visible-foreground = #4ddbe6ec
-pin-workspaces = true
-ws-icon-0 = 1;
-ws-icon-1 = 2;
-ws-icon-2 = 3;
-ws-icon-3 = 4;
-ws-icon-4 = 5;
-ws-icon-5 = 6;
+strip-wsnumbers = true
+enable-click = false
+index-sort = true
+format = <label-state>
 
-[module/Battery]
-type = custom/script
-if_exec = ~/scripts/battery
-click-left = ~/.config/polybar/scripts/popup/bat.sh
+label-focused =     
+label-focused-foreground = #678bdc
+label-focused-background = #00eeeeee
+label-focused-padding = 1
 
-[module/Spotify]
-type = custom/script
-exec = ~/.config/polybar/scripts/spotify.sh
-ellipsis = true
+label-unfocused =    
+label-unfocused-foreground = #678bdc
+label-unfocused-background = #00eeeeee
+label-unfocused-padding = 1
+
+label-urgent =   
+label-urgent-foreground = #678bdc
+label-urgent-background = #00eeeeee 
+label-urgent-padding = 1
+
+[module/date1]
+type = internal/date
+interval = 1
+date = " %I:%M"
+format-foreground = #ff6f9f
+format-prefix = 
+
+
+[module/date2]
+type = internal/date
 interval = 5
-maxlen = 40
-click-left = xdotool key super+z
-click-right = xdotool key super+0
-scroll-up = xdotool key super+0
-scroll-down = xdotool key super+z
-format-padding = 1
+date = " %A %b %m"
+;format-padding = 1
+;format-background = #7aa04b
+format-foreground = #ff6f9f
+format-prefix =
 
-[module/Xwindow]
-type = internal/xwindow
-label-maxlen = 40
+[module/powermenu]
+type = custom/menu
+
+label-open =     
+label-open-padding-left = 1
+label-open-padding-right = 1
+label-open-foreground = #3a3c61
+label-open-background = #ed4781
+label-close =
+label-close-foreground = #e88e2c
+label-close-background = #3a3c61
+label-separator =|
+label-separator-foreground = #2de0a7
+label-separator-background = #3a3c61
+
+menu-0-0 =
+menu-0-0-exec = menu-open-1
+menu-0-1 =
+menu-0-1-exec = menu-open-2
+menu-0-2 =
+menu-0-2-exec = menu-open-3
+
+menu-1-0 =
+menu-1-0-exec = menu-open-0
+menu-1-1 =
+menu-1-1-exec = systemctl reboot
+
+menu-2-0 =
+menu-2-0-exec = systemctl poweroff
+menu-2-1 =
+menu-2-1-exec = menu-open-0
+
+menu-3-0 =
+menu-3-0-exec = herbstclient quit 
+menu-3-1 =
+menu-3-1-exec = menu-open-0
+[module/rofi]
+type = custom/script
+exec = echo "       Finder"
+click-left = rofi -show run
+
+[module/hlws]
+type = custom/script
+exec = /home/nerdypepper/hlws
+
+scroll-up = exec herbstclient use_index +1
+scroll-down = exec herbstclient use_index -1
+interval = 0.01
+
+[module/cpu]
+type = internal/cpu
+label =  %percentage-core1%%
+label-foreground = #ae81ff
+
+[module/battery]
+type = internal/battery
+full-at = 99
+battery = BAT1
+adapter = ACAD
+poll-interval = 5
+
+format-charging = <animation-charging><label-charging>
+format-discharging = <ramp-capacity><label-discharging>
+label-charging = %percentage%%
+label-charging-foreground = #6df3df
+label-discharging = %percentage%%
+label-discharging-foreground = #6df3df
+label-full = Fully charged
+ramp-capacity-foreground = #6df3df
+ramp-capacity-0 =
+ramp-capacity-1 =
+ramp-capacity-2 =
+ramp-capacity-3 =
+ramp-capacity-4 =
+bar-capacity-width = 10
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-foreground = #6df3df
+animation-charging-framerate = 750
+
+
+[module/text2]
+type = custom/script
+format-text =<label>
+label =
+exec = echo label
+format-foreground = #ff6f9f
+format-background = #3a3c61
+
+[module/nightmode]
+type = custom/script
+echo = ""
 
 [module/music]
 type = custom/script
-exec = ~/.config/polybar/scripts/nowplaying.sh
-ellipsis = true
-interval = 5
-maxlen = 40
-click-left = ~/.config/polybar/scripts/popup/music.sh
-click-right = xdotool key super+shift+period
-scroll-up = xdotool key super+0
-scroll-down = xdotool key super+z
-format-padding = 1
+interval = 0.01
+exec = python3 /home/nerdypepper/praghaplayer.py
+format-foreground = #2de0a7
+format-background = #3a3c61
+click-left = exec pragha -t
+click-right = exec pragha -x
+scroll-up = exec pragha -i
+scroll-down = exec pragha -d
 
-[module/Player]
+[module/previous]
 type = custom/script
-exec = ~/.config/polybar/scripts/player.sh
-ellipsis = true
-interval = 5
-maxlen = 40
-click-left = xdotool key super+z
-click-right = xdotool key super+0
-scroll-up = xdotool key super+0
-scroll-down = xdotool key super+z
-format-padding = 1
+format-text = <label>
+label = 
+exec = echo label
+click-left = exec pragha -r
+format-foreground = #2de0a7
+format-background = #3a3c61
 
-[module/Wifi]
-; type = internal/network
-; interface = wlp1s0
-; interval = 3
-; format-connected = <ramp-signal> <label-connected>
-; ramp-signal-0 = 
-; ramp-signal-1 = 
-; ramp-signal-2 = 
-; ramp-signal-3 = 
-; ramp-signal-4 = 
-; ramp-signal-5 = 
-; format-connected-padding = 2
-; label-connected = %essid%
-; label-disconnected = 
-; format-disconnected-foreground = #4dffffff
-; ;format-disconnected-foreground = #4d000000
-; format-disconnected-padding = 2
+[module/next]
 type = custom/script
-exec = ~/.config/polybar/scripts/network
-interval = 5
+format-text = <label>
+label = 
+exec = echo label
+click-left = exec pragha -n
+format-foreground = #2de0a7
+format-background = #3a3c61
 
-[module/Volume]
-type = internal/volume
-mapping = true
-format-volume = <ramp-volume>
-ramp-volume-0 = 
-ramp-volume-1 = 
-ramp-volume-2 = 
-ramp-volume-3 = 
-ramp-headphones-0 = 
-ramp-headphones-1 = 
-format-volume-padding = 1
-label-muted = 
-format-muted-foreground = #4dffffff
-;format-muted-foreground = #4d000000
-format-muted-padding = 1
-
-[module/Clock]
-type = internal/date
-date = %Y-%m-%d
-time = %H:%M
-interval = 5
-format-padding = 2
-label = " %time%"
-
-[module/Shutdown]
+[module/pauseplay]
 type = custom/script
-exec = echo "   "
-click-left = ~/.config/polybar/scripts/power
-format-padding = 1
+format-text =  <label>
+label = 
+exec = echo label
+click-left = exec deadbeef --play-pause
+format-foreground = #2de0a7
+format-background = #3a3c61
