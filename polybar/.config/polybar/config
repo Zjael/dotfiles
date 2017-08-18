@@ -110,8 +110,9 @@ format-prefix = 
 
 [module/powermenu]
 type = custom/script
-label = 
+exec = echo " "
 click-left = ~/dotfiles/scripts/polybar/power
+format-padding = 1
 
 [module/cpu]
 type = internal/cpu
@@ -149,9 +150,9 @@ animation-charging-framerate = 750
 
 [module/reload]
 type = custom/script
-label = 
+exec = echo " "
 click-left = ~/dotfiles/scripts/polybar/reload
-label-foreground = #ae81ff
+format-padding = 1
 
 [module/text2]
 type = custom/script
