@@ -25,9 +25,9 @@ foreground = #678bdc
 font-0 = lucy tewii:size=12:antialias=false
 font-1 = FontAwesome:size=12;4
 
-modules-left = date1 volume battery cpu 
+modules-left = i3 date
 modules-center = reload
-modules-right = powermenu
+modules-right = cpu battery volume powermenu
 
 tray-position = left
 tray-padding = 1
@@ -102,26 +102,17 @@ ws-icon-3 = 4;
 ws-icon-4 = 5;
 ws-icon-default = 
 
-[module/date1]
-type = internal/date
-interval = 1
-date = " %I:%M"
-format-foreground = #ff6f9f
-format-prefix = 
-
-[module/date2]
+[module/date]
 type = internal/date
 interval = 5
 date = " %A %b %m"
-;format-padding = 1
-;format-background = #7aa04b
 format-foreground = #ff6f9f
 format-prefix = 
 
 [module/powermenu]
 type = custom/script
-format-prefix = " "
-click-left = ~/dotfiles/scripts/polybar/power
+label = 
+click-left = ~/dotfiles/scripts/polybar/power.sh
 
 [module/cpu]
 type = internal/cpu
@@ -159,18 +150,6 @@ animation-charging-framerate = 750
 
 [module/reload]
 type = custom/script
-exec = echo " "
+label = 
 click-left = ~/dotfiles/scripts/polybar/reload.sh
-format-padding = 1
 
-[module/text2]
-type = custom/script
-format-text =<label>
-label =
-exec = echo label
-format-foreground = #ff6f9f
-format-background = #3a3c61
-
-[module/nightmode]
-type = custom/script
-echo = ""
