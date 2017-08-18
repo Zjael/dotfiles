@@ -71,9 +71,8 @@ format-background = #00eeeeee
 
 [module/i3]
 type = internal/i3
+pin-workspaces = true
 strip-wsnumbers = true
-enable-click = false
-index-sort = true
 format = <label-state>
 
 label-focused =     
@@ -91,13 +90,24 @@ label-urgent-foreground = #678bdc
 label-urgent-background = #00eeeeee 
 label-urgent-padding = 1
 
+;Clean
+ws-icon-0 = 1;
+;Browsing
+ws-icon-1 = 2;
+;Editor/Dev
+ws-icon-2 = 3;
+;Entertainment
+ws-icon-3 = 4;
+;System
+ws-icon-4 = 5;
+ws-icon-default = 
+
 [module/date1]
 type = internal/date
 interval = 1
 date = " %I:%M"
 format-foreground = #ff6f9f
 format-prefix = 
-
 
 [module/date2]
 type = internal/date
@@ -150,7 +160,7 @@ animation-charging-framerate = 750
 [module/reload]
 type = custom/script
 exec = echo " "
-click-left = ~/dotfiles/scripts/polybar/reload
+click-left = ~/dotfiles/scripts/polybar/reload.sh
 format-padding = 1
 
 [module/text2]
