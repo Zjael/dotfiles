@@ -8,13 +8,13 @@
 ;=====================================================
 
 [global/wm]
-margin-top = 8
+margin-top = 0
 margin-bottom = 0 
 override-redirect = true
 
 [bar/bottom]
 width = 100%
-height = 23
+height = 24
 offset-x = 0
 offset-y = 0
 
@@ -25,7 +25,7 @@ foreground = #678bdc
 font-0 = lucy tewii:size=12:antialias=false
 font-1 = FontAwesome:size=12;4
 
-modules-left = i3 date
+modules-left = i3 date1
 modules-center = reload
 modules-right = cpu battery volume powermenu
 
@@ -102,17 +102,25 @@ ws-icon-3 = 4;
 ws-icon-4 = 5;
 ws-icon-default = 
 
-[module/date]
+[module/date1]
+type = internal/date
+interval = 1
+date = " %I:%M"
+format-prefix = 
+
+[module/date2]
 type = internal/date
 interval = 5
 date = " %A %b %m"
-format-foreground = #ff6f9f
-format-prefix = 
+format-prefix =
 
 [module/powermenu]
 type = custom/script
+format-text = <label>
 label = 
+exec = echo label
 click-left = ~/dotfiles/scripts/polybar/power.sh
+format-foreground = #678bdc
 
 [module/cpu]
 type = internal/cpu
@@ -150,6 +158,8 @@ animation-charging-framerate = 750
 
 [module/reload]
 type = custom/script
+format-text = <label>
 label = 
+exec = echo label
 click-left = ~/dotfiles/scripts/polybar/reload.sh
-
+format-foreground = #678bdc
