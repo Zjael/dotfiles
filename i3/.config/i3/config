@@ -172,7 +172,7 @@ client.urgent           #900000 #6ca05a #B2C7D2
 exec pkill dunst &
 exec xrdb -load ~/.Xresources
 exec compton &
-exec polybar top &
+exec polybar bottom &
 exec dunst -conf ~/.config/dunst/dunstrc &
 exec xfce4-power-manager &
 exec nm-applet &
