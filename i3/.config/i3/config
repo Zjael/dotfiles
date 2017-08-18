@@ -176,7 +176,7 @@ exec polybar top &
 exec dunst -conf ~/.config/dunst/dunstrc &
 exec xfce4-power-manager &
 exec nm-applet &
-exec nitrogen --set-scaled ~/dotfiles/Wallpapers/space.jpg
+exec nitrogen --set-scaled ~/dotfiles/wallpapers/astronout.jpg
 
 
 # cycle workspaces

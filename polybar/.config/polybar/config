@@ -22,14 +22,11 @@ locale = en_DK.UTF-8
 background = #3a3c61
 foreground = #678bdc
 
-font-0 = lucy tewii:size=12:antialias=false;1
-font-1 = FontAwesome:size=12:antialias=false;2
-font-2 = MaterialIcons-Regular:size=12:antialias=false;3
-font-3 = Misc Stlarch:size=12:antialias=false;4
+font-0 = lucy tewii:size=12:antialias=false;Primary Font
+font-1 = FontAwesome:size=12:antialias=false;Icons
 
 modules-left = date1 volume battery cpu 
-modules-center = hlws
-modules-right = previous music next powermenu
+modules-right = powermenu
 
 tray-position = left
 tray-padding = 1
@@ -56,15 +53,13 @@ type = internal/volume
 format-volume = <ramp-volume><label-volume> 
 module-margin-right = 0
 
-ramp-volume-0 = 
-ramp-volume-1 = 
-ramp-volume-2 =
-ramp-volume-3 =
+ramp-volume-0 = 
+ramp-volume-1 = 
 
 format-volume-foreground = #ffbc69
 format-volume-background = #3a3c61
 
-label-muted = 🔇muted
+label-muted = muted
 
 [module/xwindow]
 type = internal/xwindow
@@ -100,7 +95,7 @@ type = internal/date
 interval = 1
 date = " %I:%M"
 format-foreground = #ff6f9f
-format-prefix = 
+format-prefix = 
 
 
 [module/date2]
@@ -110,12 +105,12 @@ date = " %A %b %m"
 ;format-padding = 1
 ;format-background = #7aa04b
 format-foreground = #ff6f9f
-format-prefix =
+format-prefix = 
 
 [module/powermenu]
 type = custom/menu
 
-label-open =     
+label-open =     
 label-open-padding-left = 1
 label-open-padding-right = 1
 label-open-foreground = #3a3c61
@@ -163,7 +158,7 @@ interval = 0.01
 
 [module/cpu]
 type = internal/cpu
-label =  %percentage-core1%%
+label =  %percentage-core1%%
 label-foreground = #ae81ff
 
 [module/battery]
@@ -181,11 +176,11 @@ label-discharging = %percentage%%
 label-discharging-foreground = #6df3df
 label-full = Fully charged
 ramp-capacity-foreground = #6df3df
-ramp-capacity-0 =
-ramp-capacity-1 =
-ramp-capacity-2 =
-ramp-capacity-3 =
-ramp-capacity-4 =
+ramp-capacity-0 =
+ramp-capacity-1 =
+ramp-capacity-2 =
+ramp-capacity-3 =
+ramp-capacity-4 =
 bar-capacity-width = 10
 animation-charging-0 = 
 animation-charging-1 = 
@@ -194,7 +189,6 @@ animation-charging-3 = 
 animation-charging-4 = 
 animation-charging-foreground = #6df3df
 animation-charging-framerate = 750
-
 
 [module/text2]
 type = custom/script
@@ -207,41 +201,3 @@ format-background = #3a3c61
 [module/nightmode]
 type = custom/script
 echo = ""
-
-[module/music]
-type = custom/script
-interval = 0.01
-exec = python3 /home/nerdypepper/praghaplayer.py
-format-foreground = #2de0a7
-format-background = #3a3c61
-click-left = exec pragha -t
-click-right = exec pragha -x
-scroll-up = exec pragha -i
-scroll-down = exec pragha -d
-
-[module/previous]
-type = custom/script
-format-text = <label>
-label = 
-exec = echo label
-click-left = exec pragha -r
-format-foreground = #2de0a7
-format-background = #3a3c61
-
-[module/next]
-type = custom/script
-format-text = <label>
-label = 
-exec = echo label
-click-left = exec pragha -n
-format-foreground = #2de0a7
-format-background = #3a3c61
-
-[module/pauseplay]
-type = custom/script
-format-text =  <label>
-label = 
-exec = echo label
-click-left = exec deadbeef --play-pause
-format-foreground = #2de0a7
-format-background = #3a3c61
