@@ -26,7 +26,7 @@ font-0 = lucy tewii:size=12:antialias=false
 font-1 = FontAwesome:size=12;4
 
 modules-left = date1 volume battery cpu 
-modules-center =
+modules-center = reload
 modules-right = powermenu
 
 tray-position = left
@@ -110,9 +110,8 @@ format-prefix = 
 
 [module/powermenu]
 type = custom/script
-exec = echo " "
+format-prefix = " "
 click-left = ~/dotfiles/scripts/polybar/power
-format-padding = 1
 
 [module/cpu]
 type = internal/cpu
