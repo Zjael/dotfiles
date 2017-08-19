@@ -26,7 +26,7 @@ URxvt.cursorBlink: true
 URxvt.internalBorder: 30
 URxvt.cursorUnderline : true
 URxvt.cursorColor : #2de0a7
-URxvt.geometry : 70x20
+URxvt.geometry : 110x40
 URxvt.thickness : 5
 
 
