@@ -13,19 +13,9 @@ margin-bottom = 0
 override-redirect = true
 
 [colors]
-black = #000
-white = #fff
-blue = #00f
-green = #0f0
+background = #000
+foreground = #fff
 
-background = #ee2f343f
-background-alt = #f72f343f
-foreground = #f3f4f5
-foreground-alt = #f3f4f5
-foreground-dim = #676e7d
-primary = #ffb52a
-secondary = #e60053
-alert = #ff6600
 
 [bar/main]
 ; monitor = eDP1
@@ -56,29 +46,15 @@ overline-color = #bc92f8
 underline-size = 2
 underline-color = #bc92f8
 
-modules-left = i3 date
+modules-left = date
 modules-center = reload
-modules-right = cpu battery volume powermenu
+modules-right = battery volume powermenu
 
 tray-position = left
 tray-padding = 1
 tray-transparent = false
 tray-detached = false
 tray-background = #3a3c61
-
-[module/volume]
-type = internal/volume
-
-format-volume = <ramp-volume><label-volume> 
-module-margin-right = 0
-
-ramp-volume-0 = 
-ramp-volume-1 = 
-
-format-volume-foreground = #ffbc69
-format-volume-background = #3a3c61
-
-label-muted =  muted
 
 [module/i3]
 type = internal/i3
@@ -114,24 +90,6 @@ interval = 1
 date = " %I:%M"
 format-prefix = 
 
-[module/powermenu]
-type = custom/script
-format-text = <label>
-label = 
-exec = echo label
-click-left = ~/dotfiles/scripts/polybar/power.sh
-format-foreground = #678bdc
-
-[module/cpu]
-type = internal/cpu
-label =  %percentage-core1%%
-label-foreground = #ae81ff
-
-[module/battery]
-type = custom/script
-if_exec = ~/dotfiles/scripts/polybar/battery
-click-left = ~/dotfiles/scripts/polybar/pop-up/bat.sh
-
 [module/reload]
 type = custom/script
 format-text = <label>
@@ -139,3 +97,30 @@ label = 
 exec = echo label
 click-left = ~/dotfiles/scripts/polybar/reload.sh
 format-foreground = #678bdc
+
+[module/volume]
+type = internal/volume
+
+format-volume = <ramp-volume><label-volume> 
+module-margin-right = 0
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+
+format-volume-foreground = #ffbc69
+format-volume-background = #3a3c61
+
+label-muted =  muted
+
+[module/battery]
+type = custom/script
+if_exec = ~/dotfiles/scripts/polybar/battery
+click-left = ~/dotfiles/scripts/polybar/pop-up/bat.sh
+
+[module/powermenu]
+type = custom/script
+format-text = <label>
+label = 
+exec = echo label
+click-left = ~/dotfiles/scripts/polybar/power.sh
+format-foreground = #e60053
