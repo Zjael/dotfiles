@@ -25,7 +25,7 @@ locale = da_DK.UTF-8
 background = #3a3c61
 foreground = #678bdc
 
-font-0 = lucy tewii:size=12;3:antialias=false
+font-0 = lucy tewii:size=12;2:antialias=false
 font-1 = FontAwesome:size=12;3:antialias=false
 
 width = 100%
@@ -35,11 +35,11 @@ offset-y = 0
 bottom = true
 fixed-center = true
 radius = 2
-spacing = 1
+spacing = 3
 padding-left = 1
-padding-right = 0
+padding-right = 1
 module-margin-left = 1
-module-margin-right = 0
+module-margin-right = 1
 
 overline-size = 2
 overline-color = #bc92f8
