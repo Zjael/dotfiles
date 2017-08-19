@@ -28,7 +28,7 @@ secondary = #e60053
 alert = #ff6600
 
 [bar/main]
-monitor = eDP1
+; monitor = eDP1
 ; monitor-fallback = eDP1
 
 locale = da_DK.UTF-8
