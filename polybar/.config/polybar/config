@@ -46,12 +46,12 @@ background = ${colors.background}
 foreground = ${colors.foreground}
 
 font-0 = lucy tewii:size=12;2:antialias=false
-font-1 = Wuncon Siji:size=10;2:antialias=false
+font-1 = Wuncon Siji:size=12;2:antialias=false
 font-2 = FontAwesome:size=12;3:antialias=false
 
 modules-left = i3
-modules-center = date
-modules-right = pkg wifi wired bluetooth battery volume power-menu
+modules-center = xwindow
+modules-right = pkg wifi bluetooth battery volume date power-menu
 
 tray-position = left
 tray-padding = 1
@@ -61,38 +61,32 @@ tray-background = ${colors.background}
 
 [module/i3]
 type = internal/i3
+label-focused-padding = 2
+label-unfocused-padding = 2
+label-unfocused-foreground = #4ddbe6ec
+label-urgent-padding = 2
+label-urgent-underline = #ffffc83f
+label-visible-padding = 2
+label-visible-foreground = #4ddbe6ec
 pin-workspaces = true
-strip-wsnumbers = true
-format = <label-state>
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
 
-label-focused =     
-label-focused-foreground = #678bdc
-label-focused-background = #00eeeeee
-label-focused-padding = 1
-
-label-unfocused =    
-label-unfocused-foreground = #678bdc
-label-unfocused-background = #00eeeeee
-label-unfocused-padding = 1
-
-label-urgent =   
-label-urgent-foreground = #678bdc
-label-urgent-background = #00eeeeee 
-label-urgent-padding = 1
-
-ws-icon-0 = 1;
-ws-icon-1 = 2;
-ws-icon-2 = 3;
-ws-icon-3 = 4;
-ws-icon-4 = 5;
-ws-icon-default = 
+[module/xwindow]
+type = internal/xwindow
+label-maxlen = 40
 
 [module/date]
 type = internal/date
-label = %{F#666}%{F-} %date%  %{F#e60053}%{F-} %time%
 date = %Y-%m-%d
 time = %H:%M
 interval = 5
+format-padding = 2
+label = " %time%"
 
 [module/reload]
 type = custom/script
@@ -104,27 +98,18 @@ format-foreground = #678bdc
 
 [module/volume]
 type = internal/volume
-speaker-mixer = Speaker
-headphone-mixer = Headphone
-headphone-id = 9
-
-format-volume = <ramp-volume> <label-volume>
-label-volume = %percentage%%
-label-volume-foreground = ${root.foreground}
-
-format-muted-prefix = " "
-format-muted-foreground = #777
-label-muted = sound muted
-
-ramp-volume-0 = 
-ramp-volume-1 = 
-ramp-volume-2 = 
-ramp-volume-3 = 
-ramp-volume-foreground = #666
-
-ramp-headphones-0 = 
-ramp-headphones-1 = 
-ramp-headphones-foreground = #666
+mapping = true
+format-volume = <ramp-volume>
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-3 = 
+ramp-headphones-0 = 
+ramp-headphones-1 = 
+format-volume-padding = 1
+label-muted = 
+format-muted-foreground = #4dffffff
+format-muted-padding = 1
 
 [module/pkg]
 type = custom/script
@@ -136,44 +121,9 @@ exec = ~/dotfiles/scripts/polybar/pkg.sh
 exec-if = "ping -q -w 2 -c 1 176.34.135.167 > /dev/null"
 
 [module/wifi]
-type = internal/network
-interface = net1
-interval = 3.0
-;udspeed-minwidth = 0
-
-format-connected = <ramp-signal> <label-connected>
-format-connected-prefix = " "
-format-connected-prefix-foreground = #666
-format-connected-prefix-offset = -6
-label-connected = %downspeed:8%
-
-format-disconnected = <label-disconnected>
-format-disconnected-prefix = " "
-format-disconnected-prefix-foreground = #666
-label-disconnected = not connected
-label-disconnected-foreground = #999
-
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
-ramp-signal-foreground = #666
-
-[module/wired]
-type = internal/network
-interface = net0
-interval = 3.0
-
-format-connected-prefix = " "
-format-connected-prefix-foreground = #666
-label-connected = %local_ip%
-
-;format-disconnected = <label-disconnected>
-;format-disconnected-prefix = " "
-;format-disconnected-prefix-foreground = #666
-;label-disconnected = not connected
-;label-disconnected-foreground = #999
+type = custom/script
+exec = ~/dotfiles/scripts/polybar/network
+interval = 5
 
 [module/bluetooth]
 type = custom/script
@@ -187,43 +137,6 @@ click-left = ~/dotfiles/scripts/polybar/pop-up/bat.sh
 
 [module/powermenu]
 type = custom/script
-format-text = <label>
-label = 
-exec = echo label
+exec = echo "   "
 click-left = ~/dotfiles/scripts/polybar/power.sh
-format-foreground = #e60053
-
-[module/power-menu]
-type = custom/menu
-
-label-open = 
-label-close = 
-label-separator = /
-label-separator-margin = 1
-
-menu-0-0 = Terminate WM
-menu-0-0-foreground = ${colors.accent}
-menu-0-0-exec = bspc quit -1
-menu-0-1 = Reboot
-menu-0-1-foreground = ${colors.accent}
-menu-0-1-exec = menu-open-1
-menu-0-2 = Power off
-menu-0-2-foreground = ${colors.accent}
-menu-0-2-exec = menu-open-2
-menu-0-3 = Lock
-menu-0-3-foreground = ${colors.accent}
-menu-0-3-exec = lockscreen
-
-menu-1-0 = Cancel
-menu-1-0-foreground = ${colors.accent}
-menu-1-0-exec = menu-open-0
-menu-1-1 = Reboot
-menu-1-1-foreground = ${colors.accent}
-menu-1-1-exec = sudo reboot
-
-menu-2-0 = Power off
-menu-2-0-foreground = ${colors.accent}
-menu-2-0-exec = sudo poweroff
-menu-2-1 = Cancel
-menu-2-1-foreground = ${colors.accent}
-menu-2-1-exec = menu-open-0
+format-padding = 1
