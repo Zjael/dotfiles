@@ -46,9 +46,9 @@ overline-color = #bc92f8
 underline-size = 2
 underline-color = #bc92f8
 
-modules-left = date
-modules-center = reload
-modules-right = battery volume powermenu
+modules-left = i3
+modules-center = date
+modules-right = pkg wifi bluetooth battery volume powermenu
 
 tray-position = left
 tray-padding = 1
@@ -86,9 +86,13 @@ ws-icon-default = 
 
 [module/date]
 type = internal/date
-interval = 1
-date = " %I:%M"
-format-prefix = 
+interval = 5
+date = " %A %b %m"
+;format-padding = 1
+;format-background = #7aa04b
+format-foreground = #ff6f9f
+format-prefix =
+click-left = ~/dotfiles/scripts/polybar/reload.sh
 
 [module/reload]
 type = custom/script
@@ -111,6 +115,15 @@ format-volume-foreground = #ffbc69
 format-volume-background = #3a3c61
 
 label-muted =  muted
+
+[module/pkg]
+type = custom/script
+interval = 1200
+format = <label>
+format-underline = #dc322f
+label = "%output:0:30%"
+exec = ~/dotfiles/scripts/polybar/pkg.sh
+exec-if = "ping -q -w 2 -c 1 176.34.135.167 > /dev/null"
 
 [module/bluetooth]
 type = custom/script
