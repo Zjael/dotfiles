@@ -47,7 +47,7 @@ foreground = ${colors.foreground}
 
 font-0 = lucy tewii:size=12;2:antialias=false
 font-1 = siji:pixelsize=10;2:antialias=false
-font-1 = FontAwesome:size=12;3:antialias=false
+font-2 = FontAwesome:size=12;3:antialias=false
 
 modules-left = i3
 modules-center = date
@@ -104,17 +104,27 @@ format-foreground = #678bdc
 
 [module/volume]
 type = internal/volume
+speaker-mixer = Speaker
+headphone-mixer = Headphone
+headphone-id = 9
 
-format-volume = <ramp-volume><label-volume> 
-module-margin-right = 0
+format-volume = <ramp-volume> <label-volume>
+label-volume = %percentage%%
+label-volume-foreground = ${root.foreground}
 
-ramp-volume-0 = 
-ramp-volume-1 = 
+format-muted-prefix = " "
+format-muted-foreground = #777
+label-muted = sound muted
 
-format-volume-foreground = #ffbc69
-format-volume-background = #3a3c61
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-3 = 
+ramp-volume-foreground = #666
 
-label-muted =  muted
+ramp-headphones-0 = 
+ramp-headphones-1 = 
+ramp-headphones-foreground = #666
 
 [module/pkg]
 type = custom/script
