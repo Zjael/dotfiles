@@ -1,3 +1,3 @@
-#!/bin/sh
+#!/bin/bash
 pkill polybar
 polybar main &

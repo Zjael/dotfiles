@@ -34,8 +34,8 @@ offset-x = 0
 offset-y = 0
 bottom = true
 fixed-center = true
-radius = 2
-spacing = 3
+radius = 0
+spacing = 1
 padding-left = 1
 padding-right = 1
 module-margin-left = 1
@@ -88,7 +88,7 @@ ws-icon-default = 
 type = internal/date
 interval = 1
 date = " %I:%M"
-format-prefix = 
+format-prefix = 
 
 [module/reload]
 type = custom/script
@@ -111,6 +111,11 @@ format-volume-foreground = #ffbc69
 format-volume-background = #3a3c61
 
 label-muted =  muted
+
+[module/bluetooth]
+type = custom/script
+interval = 5
+if_exec = ~/dotfiles/scripts/polybar/bluetooth.sh
 
 [module/battery]
 type = custom/script

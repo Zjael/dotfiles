@@ -1,4 +1,4 @@
-#!/bin/sh -e
+#!/bin/bash -e
 
 SILENT=${SILENT-true}
 
@@ -19,3 +19,4 @@ for module in "${MODULES[@]}"; do
 done
 
 sudo chmod -R 755 /home/$USER/.config
+sudo chmod -R 755 /home/$USER/dotfiles/scripts

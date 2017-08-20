@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 current=$(nmcli device wifi 2>/dev/null | tail -n +2 | grep -P "^\*")
 

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 cd $(dirname $0)
 
 [ -z "$SCREEN" ] && SCREEN=$($HOME/scripts/activescreen.sh)

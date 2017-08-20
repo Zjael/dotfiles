@@ -122,6 +122,7 @@ set_bootloader() {
 setup_shell() {
     sudo pacman -S zsh --noconfirm --needed
     chsh -s $(which zsh)
+    git clone https://github.com/zplug/zplug ~/.zplug
 }
 
 setup_laptop () {
@@ -170,7 +171,7 @@ install_packages() {
     packages+=' networkmanager lm_sensors thermald curl wget httpie htop nethogs udevil rar unrar scrot neofetch'
 
     # Terminal
-    packages+=' zplug tmux tree ranger autojump thefuck micro bash-snippets'
+    packages+=' tmux tree ranger autojump thefuck micro bash-snippets'
     packages+=' rtv'
 
     # Development

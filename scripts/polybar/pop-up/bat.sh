@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 cd $(dirname $0)
 
 left=1125

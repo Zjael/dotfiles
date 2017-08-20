@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 HAS_SIJI=$(grep -i "^[^#].*\$mod+return" ~/.config/i3/config | grep -o urxvt)
 ICON=""
 [ ! -z $HAS_SIJI ] && ICON=""

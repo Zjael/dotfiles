@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 scrot /tmp/lock.png
 
 convert /tmp/lock.png -scale 10% -scale 1000% /tmp/lock.png
