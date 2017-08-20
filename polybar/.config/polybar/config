@@ -46,7 +46,7 @@ background = ${colors.background}
 foreground = ${colors.foreground}
 
 font-0 = lucy tewii:size=12;2:antialias=false
-font-1 = siji:pixelsize=10;2:antialias=false
+font-1 = Wuncon Siji:size=10;2:antialias=false
 font-2 = FontAwesome:size=12;3:antialias=false
 
 modules-left = i3
