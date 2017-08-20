@@ -51,7 +51,7 @@ font-2 = FontAwesome:size=12;3:antialias=false
 
 modules-left = i3
 modules-center = xwindow
-modules-right = pkg wifi bluetooth battery volume date power-menu
+modules-right = pkg wifi bluetooth battery volume date powermenu
 
 tray-position = left
 tray-padding = 1
@@ -122,7 +122,7 @@ exec-if = "ping -q -w 2 -c 1 176.34.135.167 > /dev/null"
 
 [module/wifi]
 type = custom/script
-exec = ~/dotfiles/scripts/polybar/network
+if_exec = ~/dotfiles/scripts/polybar/network.sh
 interval = 5
 
 [module/bluetooth]
@@ -137,6 +137,6 @@ click-left = ~/dotfiles/scripts/polybar/pop-up/bat.sh
 
 [module/powermenu]
 type = custom/script
-exec = echo "   "
+exec = echo ""
 click-left = ~/dotfiles/scripts/polybar/power.sh
 format-padding = 1
