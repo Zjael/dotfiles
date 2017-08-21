@@ -3,7 +3,7 @@
 #--------------# Please see http://i3wm.org/docs/userguide.html for a complete reference!
 set $mod Mod1
 
-new_window pixel 3 # disable title bar
+new_window pixel 3
 focus_follows_mouse no
 force_focus_wrapping yes
 
@@ -33,8 +33,8 @@ for_window [instance="__scratchpad"] floating enable
 exec --no-startup-id urxvt -name __scratchpad -geometry 110x40 -e zsh -c ~/dotfiles/scripts/pop-up/scratchpad.sh
 bindsym $mod+F2 scratchpad show
 
-bindsym $mod+Shift+c reload # reload the configuration file
-bindsym $mod+Shift+r restart # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 bindsym XF86MonBrightnessUp exec --no-startup-id ~/dotfiles/scripts/popup/brightness.sh up
@@ -59,7 +59,7 @@ bindsym $mod+q exec --no-startup-id ~/dotfiles/scripts/menu/power.sh
 #-------------#
 #-- Windows --#
 #-------------#
-bindsym $mod+Shift+q kill # kill focused window
+bindsym $mod+Shift+q kill
 
 # change focus
 bindsym $mod+h focus left
@@ -81,21 +81,23 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-bindsym $mod+h split h # split in horizontal orientation
-bindsym $mod+v split v # split in vertical orientation
+bindsym $mod+h split h
+bindsym $mod+v split v
 
-bindsym $mod+f fullscreen toggle # enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
-bindsym $mod+Shift+space floating toggle # toggle tiling / floating
-bindsym $mod+space focus mode_toggle # change focus between tiling / floating windows
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle 
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle 
 
-bindsym $mod+a focus parent # focus the parent container
-bindsym $mod+b focus child # focus the child container
+bindsym $mod+a focus parent
+bindsym $mod+b focus child
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -121,7 +123,8 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10 
 
-mode "resize" { # resize window (you can also use the mouse for that)
+# resize window (you can also use the mouse for that)
+mode "resize" { 
         bindsym h resize shrink width 10 px or 10 ppt
         bindsym j resize grow height 10 px or 10 ppt
         bindsym k resize shrink height 10 px or 10 ppt
