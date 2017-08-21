@@ -81,7 +81,7 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-bindsym $mod+h split h
+bindsym $mod+g split h
 bindsym $mod+v split v
 
 bindsym $mod+f fullscreen toggle
