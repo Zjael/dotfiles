@@ -33,7 +33,7 @@ fixed-center = true
 radius = 0
 spacing = 1
 padding-left = 0
-padding-right = 2
+padding-right = 0
 module-margin-left = 1
 module-margin-right = 1
 
@@ -69,10 +69,10 @@ label-urgent-underline = #ffffc83f
 label-visible-padding = 2
 label-visible-foreground = #4ddbe6ec
 pin-workspaces = true
-ws-icon-0 = 1;
-ws-icon-1 = 2;
-ws-icon-2 = 3;
-ws-icon-3 = 4;
+ws-icon-0 = TERM;
+ws-icon-1 = SURF;
+ws-icon-2 = EDIT;
+ws-icon-3 = GAME;
 ws-icon-4 = 5;
 ws-icon-5 = 6;
 
@@ -93,7 +93,7 @@ type = custom/script
 format-text = <label>
 label = 
 exec = echo label
-click-left = ~/dotfiles/scripts/polybar/reload.sh
+click-left = ~/dotfiles/scripts/reload.sh
 format-foreground = #678bdc
 
 [module/volume]
@@ -117,26 +117,26 @@ interval = 1200
 format = <label>
 format-underline = #dc322f
 label = "%output:0:30%"
-exec = ~/dotfiles/scripts/polybar/pkg.sh
+exec = ~/dotfiles/scripts/panel/pkg.sh
 exec-if = "ping -q -w 2 -c 1 176.34.135.167 > /dev/null"
 
 [module/wifi]
 type = custom/script
-if_exec = ~/dotfiles/scripts/polybar/network.sh
+if_exec = ~/dotfiles/scripts/panel/network.sh
 interval = 5
 
 [module/bluetooth]
 type = custom/script
 interval = 5
-if_exec = ~/dotfiles/scripts/polybar/bluetooth.sh
+if_exec = ~/dotfiles/scripts/panel/bluetooth.sh
 
 [module/battery]
 type = custom/script
-if_exec = ~/dotfiles/scripts/polybar/battery
-click-left = ~/dotfiles/scripts/polybar/pop-up/bat.sh
+if_exec = ~/dotfiles/scripts/panel/battery
+click-left = ~/dotfiles/scripts/pop-up/bat.sh
 
 [module/powermenu]
 type = custom/script
-exec = echo ""
-click-left = ~/dotfiles/scripts/polybar/power.sh
+exec = echo %{F#dc322f}""
+click-left = ~/dotfiles/scripts/menu/power.sh
 format-padding = 1

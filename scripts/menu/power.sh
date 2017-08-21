@@ -1,6 +1,6 @@
 #!/bin/bash
 
-res=$(rofi -p "> " -dmenu < ~/dotfiles/scripts/polybar/powermenu)
+res=$(rofi -p "> " -dmenu < ~/dotfiles/scripts/menu/powermenu)
 
 if [ $res = "logout" ]; then
 	i3-msg exit

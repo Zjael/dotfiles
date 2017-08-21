@@ -1,0 +1,23 @@
+#!/bin/bash
+
+res=$(rofi -p "> " -dmenu < ~/dotfiles/scripts/menu/scrotmenu)
+
+outfile="$HOME/Documents/scrots/auto/%Y-%m-%d_%H%M%S_scrot.png"
+
+sleep 0.5
+
+if [ "$res" == "full scrot" ]; then
+    scrot "$outfile" -t 10 -e '~/scripts/scrot-notify.sh "$n"'
+fi
+if [ "$res" == "rectangular selection scrot" ]; then
+    scrot -s "$outfile" -t 10 -e '~/scripts/scrot-notify.sh "$n"'
+fi
+if [ "$res" == "scrot current window" ]; then
+    scrot -b -u "$outfile" -t 10 -e '~/scripts/scrot-notify.sh "$n"'
+fi
+if [ "$res" == "scrot (+5 seconds delay)" ]; then
+    scrot -d 5 "$outfile" -t 10 -e '~/scripts/scrot-notify.sh "$n"'
+fi
+if [ "$res" == "" ]; then
+    exit
+fi

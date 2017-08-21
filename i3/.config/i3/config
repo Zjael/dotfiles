@@ -9,7 +9,7 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-set $mod Mod4
+set $mod Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -33,14 +33,19 @@ font pango: NovaMono 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec urxvt 
-for_window [class="URxvt"] floating enable
+bindsym $mod+Return exec urxvt -geometry 110x40
+# scratchpad
+for_window [instance="__scratchpad"] move scratchpad 
+for_window [instance="__scratchpad"] floating enable
+exec --no-startup-id urxvt -name __scratchpad -geometry 110x40 -e zsh -c ~/dotfiles/scripts/pop-up/scratchpad.sh
+bindsym $mod+F2 scratchpad show
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # lock the screen
-set $Locker i3lock-fancy
+set Locker i3lock && sleep 1
+# set $Locker i3lock-fancy
 
 # start rofi (an alternative to dmenu)
 bindsym $mod+d exec "rofi -show run"
@@ -131,6 +136,8 @@ bindsym $mod+Shift+0 move container to workspace 10
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -168,17 +175,39 @@ client.unfocused        #304153 #343D46 #ffffff
 client.urgent           #900000 #6ca05a #B2C7D2
 
 
+# Custom keybindings
+bindsym XF86MonBrightnessUp exec --no-startup-id ~/dotfiles/scripts/popup/brightness.sh up
+bindsym XF86MonBrightnessDown exec --no-startup-id ~/dotfiles/scripts/popup/brightness.sh down
+
+bindsym XF86AudioLowerVolume exec --no-startup-id ~/dotfiles/scripts/popup/volume.sh down
+bindsym XF86AudioRaiseVolume exec --no-startup-id ~/dotfiles/scripts/popup/volume.sh up
+bindsym XF86AudioMute exec --no-startup-id ~/dotfiles/scripts/popup/volume.sh mute
+
+bindsym $mod+p exec --no-startup-id ~/dotfiles/scripts/popup/music.sh pause
+bindsym XF86AudioPlay exec --no-startup-id ~/dotfiles/scripts/popup/music.sh pause
+bindsym $mod+Shift+comma exec --no-startup-id ~/dotfiles/scripts/popup/music.sh prev
+bindsym XF86AudioPrev exec --no-startup-id ~/dotfiles/scripts/popup/music.sh prev
+bindsym $mod+Shift+period exec --no-startup-id ~/dotfiles/scripts/popup/music.sh next
+bindsym XF86AudioNext exec --no-startup-id ~/dotfiles/scripts/popup/music.sh next
+
+bindsym $mod+Tab workspace back_and_forth
+bindsym Print exec --no-startup-id scrot "/home/$USER/Documents/scrots/auto/%Y-%m-%d_%H%M%S_scrot.png" -e 'notify-send "scrot" "Screenshot saved as $n"'
+bindsym $mod+p exec --no-startup-id ~/dotfiles/scripts/menu/scrotsel.sh
+bindsym $mod+q exec --no-startup-id ~/dotfiles/scripts/menu/power.sh
+
 # executions
 exec pkill dunst &
 exec xrdb -load ~/.Xresources
 exec compton &
 exec polybar main &
 exec dunst -conf ~/.config/dunst/dunstrc &
-exec xfce4-power-manager &
-exec nm-applet &
+# exec xfce4-power-manager &
+# exec nm-applet &
 exec nitrogen --set-scaled ~/dotfiles/wallpapers/astronout.jpg
+exec --no-startup-id setxkbmap dk
+exec devmon --sync --exec-on-drive "notify-send 'Automount' '%l is now mounted at %d.'" --exec-on-remove "notify-send 'Automount' '%l has been removed.'"
 
 
-# cycle workspaces
-bindsym $mod+Tab workspace back_and_forth
-bindsym $mod+q workspace next
+exec notify-send -a i3 "i3 loaded" "Hello, $USER."
+
+
