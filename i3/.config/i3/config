@@ -143,14 +143,17 @@ bindsym $mod+r mode "resize"
 #----------------#
 #-- Executions --#
 #----------------#
-exec pkill dunst &
-exec xrdb -load ~/.Xresources
+exec pkill compton
 exec compton &
-exec polybar main &
+exec killall dunst
 exec dunst -conf ~/.config/dunst/dunstrc &
+exec nitrogen --set-scaled ~/dotfiles/wallpapers/astronout.jpg
+exec xrdb -load ~/.Xresources
+exec pkill polybar
+exec polybar main &
 # exec xfce4-power-manager &
 # exec nm-applet &
-exec nitrogen --set-scaled ~/dotfiles/wallpapers/astronout.jpg
+
 exec --no-startup-id setxkbmap dk
 exec devmon --sync --exec-on-drive "notify-send 'Automount' '%l is now mounted at %d.'" --exec-on-remove "notify-send 'Automount' '%l has been removed.'"
 
