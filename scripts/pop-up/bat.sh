@@ -19,7 +19,7 @@ else
 fi
 
 if [ -z $(pgrep -f "n30f.*batgraph\.png") ]; then
-  n30f -x "$left" -y "$top" ~/scripts/popup/bg.png&
+  n30f -x "$left" -y "$top" ~/dotfiles/scripts/popup/bg.png&
   sleep 0.1
   n30f -x $(bc <<< "$left + 11") -y $(bc <<< "$top + 33") /tmp/batgraph.png&
   DURATION="unlimited" BG="#00000000" FG="#FF2c3643" OVERLAY="true" GEOMETRY="168x10+$(bc <<< "$left + 2")+$(bc <<< "$top + 12")" ./popup.sh "%{c}Charge level is $power."&

@@ -87,6 +87,7 @@ time = %H:%M
 interval = 5
 format-padding = 2
 label = " %time%"
+format-foreground = #fff
 
 [module/reload]
 type = custom/script
@@ -106,10 +107,10 @@ ramp-volume-2 = 
 ramp-volume-3 = 
 ramp-headphones-0 = 
 ramp-headphones-1 = 
-format-volume-padding = 1
+format-volume-foreground = #ffbc69
+
 label-muted = 
-format-muted-foreground = #4dffffff
-format-muted-padding = 1
+format-muted-foreground = #dc322f
 
 [module/pkg]
 type = custom/script
