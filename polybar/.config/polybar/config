@@ -47,7 +47,7 @@ foreground = ${colors.foreground}
 
 font-0 = lucy tewii:size=12;2:antialias=false
 ; font-0 = Gohu GohuFont:size=11;2:antialias=false
-font-1 = Wuncon Siji:size=10;2
+font-1 = Wuncon Siji:size=18;2
 ; font-2 = FontAwesome:size=12;3:antialias=false
 
 modules-left = i3
@@ -100,6 +100,7 @@ format-foreground = #678bdc
 [module/volume]
 type = internal/volume
 mapping = true
+format-padding = 1
 format-volume = <ramp-volume>
 ramp-volume-0 = 
 ramp-volume-1 = 
