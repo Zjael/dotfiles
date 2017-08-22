@@ -6,9 +6,9 @@ if [ -z "$connection" ]; then
   exit 0
 fi
 
-if [[ "$connection" == "connecting"]]
+if [ "$connection" = "connecting" ]
   echo "%{F#678bdc} "
-elif [[ "$connection" == "connected"]]
+elif [ "$connection" = "connected" ]
   echo "%{F#e88e2c} "
 else
   exit 0
