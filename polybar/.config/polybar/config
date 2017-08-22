@@ -47,18 +47,20 @@ foreground = ${colors.foreground}
 
 font-0 = lucy tewii:size=12;2:antialias=false
 ; font-0 = Gohu GohuFont:size=11;2:antialias=false
-font-1 = Wuncon Siji:size=18;2
+font-1 = Wuncon Siji:pixelsize=22;2
 ; font-2 = FontAwesome:size=12;3:antialias=false
 
 modules-left = i3
 modules-center = xwindow
 modules-right = wifi bluetooth battery volume date powermenu
 
-tray-position = left
+tray-position = right
 tray-padding = 1
-tray-transparent = false
+;tray-transparent = true
 tray-detached = false
 tray-background = ${colors.background}
+
+;wm-restack = i3
 
 [module/i3]
 type = internal/i3
