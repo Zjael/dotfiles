@@ -19,7 +19,8 @@ URxvt.color15:  #e88e2c
 URxvt.background: #292a44
 URxvt.foreground: #678bdc
 
-URxvt.font: xft:lucy tewii:size=9
+URxvt.font: xft:Gohu GohuFont:size=14
+! URxvt.font: xft:lucy tewii:size=9
 URxvt.shading: 30
 URxvt.scrollBar: false
 URxvt.cursorBlink: true

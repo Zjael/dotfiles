@@ -16,7 +16,7 @@ client.unfocused        #304153 #343D46 #ffffff
 client.urgent           #900000 #6ca05a #B2C7D2
 
 # font pango: NovaMono 8
-font pango:Gohu GohuFont, Wuncon Siji 8
+font pango:Gohu GohuFont, Wuncon Siji 11
 
 floating_modifier $mod
 
