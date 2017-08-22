@@ -21,9 +21,9 @@ setopt HIST_IGNORE_SPACE # Don't record an entry starting with a space.
 export BROWSER="firefox"
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR="micro"
+  export EDITOR="nano"
 else
-  export EDITOR="VSC"
+  export EDITOR="micro"
 fi
 
 alias update="sudo pacman -Syu && pacaur -Syu"
