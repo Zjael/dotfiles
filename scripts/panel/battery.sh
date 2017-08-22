@@ -1,3 +1,5 @@
+#!/bin/bash
+
 getinfo() {
   echo $(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep "$1" | awk -v patt="$1" -F'[[:space:]][[:space:]]+' '{ print $3 }')
 }
