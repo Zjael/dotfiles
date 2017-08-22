@@ -3,6 +3,8 @@
 #--------------# Please see http://i3wm.org/docs/userguide.html for a complete reference!
 set $mod Mod1
 
+hide_edge_borders both
+for_window [class="^.*"] border pixel 1 
 new_window pixel 3
 focus_follows_mouse no
 force_focus_wrapping yes
@@ -13,8 +15,8 @@ client.focused_inactive #304153 #343D46 #ffffff
 client.unfocused        #304153 #343D46 #ffffff 
 client.urgent           #900000 #6ca05a #B2C7D2
 
-font pango: NovaMono 8
-#font pango:Gohu GohuFont, Wuncon Siji 8
+# font pango: NovaMono 8
+font pango:Gohu GohuFont, Wuncon Siji 8
 
 floating_modifier $mod
 
