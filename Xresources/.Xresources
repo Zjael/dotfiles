@@ -1,4 +1,4 @@
-*.font: xft:lucy tewii:pixelsize=12
+*.font: xft:lucy tewii:pixelsize=11
 
 Xft.dpi:                        96
 Xft.antialias:                  1
