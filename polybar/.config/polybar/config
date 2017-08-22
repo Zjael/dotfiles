@@ -46,8 +46,13 @@ background = ${colors.background}
 foreground = ${colors.foreground}
 
 ; font-0 = lucy tewii:size=12;2:antialias=false
+<<<<<<< HEAD
 font-0 = Gohu GohuFont:pixelsize=11;2
 font-1 = Wuncon Siji:pixelsize=10;2
+=======
+font-0 = Gohu GohuFont:size=11;2:antialias=false
+font-1 = Wuncon Siji:size=14;2:antialias=false
+>>>>>>> 30490252e996f10d6ee4f781f2fc85987019d5b3
 ; font-2 = FontAwesome:size=12;3:antialias=false
 
 modules-left = i3
