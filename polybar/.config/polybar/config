@@ -124,6 +124,7 @@ type = custom/script
 interval = 1200
 exec = ~/dotfiles/scripts/panel/pkg.sh
 exec-if = "ping -q -w 2 -c 1 176.34.135.167 > /dev/null"
+click-left = sudo pacman -Syu && pacaur -Syu
 
 [module/wifi]
 type = custom/script
