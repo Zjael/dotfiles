@@ -7,5 +7,6 @@ if [[ "$check" != "0" ]]
 then
     echo "%{F#4ddbe6ec} "
 else
-    echo "%{F#4dffffff} "
+    #echo "%{F#4dffffff} "
+    exit 0
 fi
