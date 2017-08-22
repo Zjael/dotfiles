@@ -90,14 +90,7 @@ time = %H:%M
 interval = 5
 label = "%time%"
 format-foreground = #678bdc
-
-[module/reload]
-type = custom/script
-format-text = <label>
-label = 
-exec = echo label
 click-left = ~/dotfiles/scripts/reload.sh
-format-foreground = #678bdc
 
 [module/volume]
 type = internal/volume
