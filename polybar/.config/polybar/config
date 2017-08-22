@@ -49,7 +49,7 @@ font-1 = Wuncon Siji:size=12;2
 
 modules-left = i3
 modules-center = date
-modules-right = pkg wifi battery volume powermenu
+modules-right = wifi battery volume pkg powermenu
 
 tray-position = right
 tray-padding = 1
@@ -122,9 +122,6 @@ exec = ~/dotfiles/scripts/panel/temperature.sh
 [module/pkg]
 type = custom/script
 interval = 1200
-format = <label>
-format-underline = #dc322f
-label = "%output:0:30%"
 exec = ~/dotfiles/scripts/panel/pkg.sh
 exec-if = "ping -q -w 2 -c 1 176.34.135.167 > /dev/null"
 
