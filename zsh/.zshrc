@@ -1,3 +1,7 @@
+if [[ ! -d ~/.zplug ]]; then
+    git clone https://github.com/zplug/zplug ~/.zplug
+    source ~/.zplug/init.zsh && zplug update --self
+fi
 source ~/.zplug/init.zsh
 
 HISTFILE=~/.zsh_history
@@ -72,15 +76,8 @@ zplug "plugins/git-extras", from:oh-my-zsh
 zplug "plugins/git-flow", from:oh-my-zsh
 zplug "plugins/pip", from:oh-my-zsh
 
-zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
+zplug 'themes/gallois', from:oh-my-zsh, as:theme
+# zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
 
-# Install plugins if there are plugins that have not been installed
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
-
-# Then, source plugins and add commands to $PATH
-zplug load --verbose
+zplug check || zplug install
+zplug load
