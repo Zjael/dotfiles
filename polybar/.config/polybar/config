@@ -30,7 +30,7 @@ offset-x = 0
 offset-y = 0
 bottom = true
 fixed-center = true
-radius = 0
+radius = 0.0
 spacing = 0
 padding-left = 0
 padding-right = 0
@@ -47,7 +47,7 @@ foreground = ${colors.foreground}
 
 font-0 = lucy tewii:size=12;2:antialias=false
 ; font-0 = Gohu GohuFont:size=11;2:antialias=false
-font-1 = Wuncon Siji:size=16;2:antialias=false
+font-1 = Wuncon Siji:pixelsize=16;2
 ; font-2 = FontAwesome:size=12;3:antialias=false
 
 modules-left = i3
