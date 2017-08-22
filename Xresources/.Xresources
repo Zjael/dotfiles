@@ -1,35 +1,50 @@
-URxvt.color0:   #292a44
-URxvt.color1:   #6dfedf
-URxvt.color2:   #e88e2c
-URxvt.color3:   #ae81ff
-URxvt.color4:   #ff6f9f
-URxvt.color5:   #7aa5ff
-URxvt.color6:   #ed4781
-URxvt.color7:   #678bdc
+*.font: xft:lucy tewii:pixelsize=12
 
-URxvt.color8:   #6dfedf
-URxvt.color9:   #e88e2c
-URxvt.color10:  #ae81ff 
-URxvt.color11:  #ffbc69
-URxvt.color12:  #ff6f9f
-URxvt.color13:  #ff6f9f
-URxvt.color14:  #ed4781
-URxvt.color15:  #e88e2c
+Xft.dpi:                        96
+Xft.antialias:                  1
+Xft.autohint:                   1
+Xft.hinting:                    1
+Xft.hintstyle:                  hintslight
+Xft.lcdfilter:                  lcdlight
+Xft.rgba:                       rgb
 
-URxvt.background: #292a44
-URxvt.foreground: #678bdc
+URxvt*termName:                 rxvt-256color
+URxvt.depth:                    32
+URxvt*lineSpace:                1
+URxvt.letterSpace:              -1
+URxvt.iso14755:                 false
+URxvt.iso14755_52:              false
+URxvt*geometry:                 65x17
+URxvt.scrollBar:                false
+URxvt.cursorBlink:              true
+URxvt.cursorUnderline:          true
+URxvt*loginShell:               true
+URxvt.internalBorder:           25
+URxvt.perl-ext:	 		        default,matcher
+URxvt.url-launcher:             chromium
+URxvt.matcher.button: 		    1
 
-URxvt.font: xft:lucy tewii:size=9
-URxvt.shading: 30
-URxvt.scrollBar: false
-URxvt.cursorBlink: true
-URxvt.internalBorder: 30
-URxvt.cursorUnderline : true
-URxvt.cursorColor : #2de0a7
-URxvt.geometry : 110x40
-URxvt.thickness : 5
+*.foreground:   #678bdc
+*.background:   #141021
+*.cursorColor:  #2de0a7
 
+*.color0:   #292a44
+*.color1:   #6dfedf
+*.color2:   #e88e2c
+*.color3:   #ae81ff
+*.color4:   #ff6f9f
+*.color5:   #7aa5ff
+*.color6:   #ed4781
+*.color7:   #678bdc
 
+*.color8:   #6dfedf
+*.color9:   #e88e2c
+*.color10:  #ae81ff 
+*.color11:  #ffbc69
+*.color12:  #ff6f9f
+*.color13:  #ff6f9f
+*.color14:  #ed4781
+*.color15:  #e88e2c
 
 
 ! ------------------------------------------------------------------------------
