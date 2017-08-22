@@ -20,4 +20,4 @@ else
 fi
 
 # output="$output $ssid"
-echo "$output"
+echo "$output "

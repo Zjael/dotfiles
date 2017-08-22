@@ -4,8 +4,12 @@ connection=$(nmcli device 2>/dev/null | tail -n +2 | grep -w "ethernet" | awk '{
 
 if [ -z "$connection" ]; then
   exit 0
-elif [[ "$connection" == "connecting"]]
+fi
+
+if [[ "$connection" == "connecting"]]
   echo "%{F#678bdc} "
 elif [[ "$connection" == "connected"]]
   echo "%{F#e88e2c} "
+else
+  exit 0
 fi
