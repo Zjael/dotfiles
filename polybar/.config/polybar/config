@@ -117,6 +117,12 @@ format-volume-foreground = #ffbc69
 label-muted = 
 format-muted-foreground = #dc322f
 
+[module/temperature]
+type = custom/script
+interval = 1
+exec-if = sensors
+exec = ~/dotfiles/scripts/panel/temperature.sh
+
 [module/pkg]
 type = custom/script
 interval = 1200
