@@ -47,7 +47,7 @@ foreground = ${colors.foreground}
 
 font-0 = lucy tewii:size=12;2:antialias=false
 ; font-0 = Gohu GohuFont:size=11;2:antialias=false
-font-1 = Wuncon Siji:pixelsize=16;2
+font-1 = Wuncon Siji:size=10;2
 ; font-2 = FontAwesome:size=12;3:antialias=false
 
 modules-left = i3
@@ -86,7 +86,6 @@ type = internal/date
 date = %Y-%m-%d
 time = %H:%M
 interval = 5
-format-padding = 2
 label = "%time%"
 format-foreground = #678bdc
 
