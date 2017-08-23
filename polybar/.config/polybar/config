@@ -62,11 +62,8 @@ scroll-down = i3wm-wsprev
 
 [module/i3]
 type = internal/i3
-
 pin-workspaces = true
 strip-wsnumbers = true
-index-sort = true
-enable-scroll = false
 
 format = <label-state>
 label-focused-padding = 1
