@@ -75,12 +75,18 @@ label-urgent-foreground = #dc322f
 label-urgent-underline = #ffffc83f
 label-visible-padding = 1
 label-visible-foreground = #4ddbe6ec
-ws-icon-0 = 1;
+;CLEAN/HOME
+ws-icon-0 = 1;
+;BROWSER/SURF
 ws-icon-1 = 2;
-ws-icon-2 = 3;
-ws-icon-3 = 4;
-ws-icon-4 = 5;
-ws-icon-5 = 6;
+;CMD/TERM
+ws-icon-2 = 3;
+;EDITOR
+ws-icon-3 = 4;
+;GAMING/ENTERTAINMENT
+ws-icon-4 = 5;
+;SYSTEM
+ws-icon-5 = 6;
 
 [module/date]
 type = internal/date
