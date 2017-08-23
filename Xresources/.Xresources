@@ -28,7 +28,6 @@ URxvt.background: #292a44
 URxvt.foreground: #678bdc
 
 *URxvt.font: xft:lucy tewii:size=9
-URxvt.font: -*-gohufont-medium-*-*-*-11-*-*-*-*-*-iso10646-*,-wuncon-siji-medium-r-normal--11-100-*-*-*-*-iso10646-*
 URxvt.shading: 30
 URxvt.scrollBar: false
 URxvt.cursorBlink: true
