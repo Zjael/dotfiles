@@ -1,7 +1,12 @@
-#!/bin/bash
-scrot /tmp/lock.png
+#!/usr/bin/env bash
 
-convert /tmp/lock.png -scale 10% -scale 1000% /tmp/lock.png
+icon="~/dotfiles/scripts/pop-up/lock.png"
+tmpbg='/tmp/screen.png'
 
-i3lock -i /tmp/lock.png
-rm /tmp/lock.png
+(( $# )) && { icon=$1; }
+
+scrot "$tmpbg"
+convert "$tmpbg" -scale 10% -scale 1000% "$tmpbg"
+convert "$tmpbg" "$icon" -gravity center -composite -matte "$tmpbg"
+i3lock -u -i "$tmpbg"
+rm "$tmpbg"
