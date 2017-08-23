@@ -1,10 +1,10 @@
 Xft.dpi: 96
-Xft.antialias: true
-Xft.hinting: true
-Xft.rgba: rgb
-Xft.autohint: false
-Xft.hintstyle: hintslight
+Xft.autohint: 0
 Xft.lcdfilter: lcddefault
+Xft.hintstyle: hintslight
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
 
 URxvt.color0:   #292a44
 URxvt.color1:   #6dfedf
@@ -27,7 +27,8 @@ URxvt.color15:  #e88e2c
 URxvt.background: #292a44
 URxvt.foreground: #678bdc
 
-URxvt.font: xft:lucy tewii:size=9
+*URxvt.font: xft:lucy tewii:size=9
+URxvt.font: -*-gohufont-medium-*-*-*-11-*-*-*-*-*-iso10646-*,-wuncon-siji-medium-r-normal--11-100-*-*-*-*-iso10646-*
 URxvt.shading: 30
 URxvt.scrollBar: false
 URxvt.cursorBlink: true
