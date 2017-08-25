@@ -194,7 +194,7 @@ install_packages() {
     packages+=' cowsay lolcat fortune-mod'
 
     # Enviroment
-    packages+=' i3-gaps i3lock-fancy-git polybar'
+    packages+=' i3-gaps i3lock polybar'
     packages+=' stow redshift rofi nitrogen compton dunst rxvt-unicode rxvt-unicode-terminfo'
 
     # Themes
