@@ -2,7 +2,6 @@
 LANG="en_DK"
 TIMEZONE="Europe/Copenhagen"
 KEYMAP="dk"
-SSH_PORT="505050"
 MIRROR_LOCATION="DK"
 
 arch_setup() {
@@ -189,14 +188,14 @@ install_packages() {
     packages+=' xorg xorg-xinit xbacklight'
 
     # Desktop
-    packages+=' vivaldi spotify blockify emacs xclip cups'
+    packages+=' surf spotify blockify xclip cups'
 
     # For fun
     packages+=' cowsay lolcat fortune-mod'
 
     # Enviroment
     packages+=' i3-gaps i3lock-fancy-git polybar'
-    packages+=' stow redshift termite rofi nitrogen conky compton dunst rxvt-unicode rxvt-unicode-terminfo'
+    packages+=' stow redshift rofi nitrogen compton dunst rxvt-unicode rxvt-unicode-terminfo'
 
     # Themes
     packages+=' gtk-arc-flatabulous-theme-git paper-icon-theme-git siji-git ttf-material-icons'
