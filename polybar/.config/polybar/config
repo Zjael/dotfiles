@@ -31,8 +31,8 @@ background = ${colors.background}
 foreground = ${colors.foreground}
 
 font-0 = lucy tewii:size=11;2
-font-1 = siji:pixelsize=10;2
-;font-1 = Wuncon Siji:size=16;2
+font-1 = siji:pixelsize=15;2
+font-2 = Wuncon Siji:size=11;2
 
 modules-left = i3
 modules-center = date
