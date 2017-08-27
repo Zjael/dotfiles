@@ -5,7 +5,7 @@ SILENT=${SILENT-true}
 DIRNAME=$(dirname $0)
 cd $DIRNAME
 
-MODULES=( "compton" "dunst" "i3" "polybar" "rofi" "Xresources" "zsh" "xorg")
+MODULES=( "compton" "dunst" "i3" "polybar" "Xresources" "zsh" "xorg")
 
 ARG="-t /home/$USER"
 
