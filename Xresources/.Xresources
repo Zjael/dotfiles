@@ -1,9 +1,9 @@
-Xft.dpi: 96
-Xft.autohint: 0
+!Xft.dpi: 96
+Xft.autohint: false
 Xft.lcdfilter: lcddefault
 Xft.hintstyle: hintslight
-Xft.hinting: 1
-Xft.antialias: 1
+Xft.hinting: true
+Xft.antialias: true
 Xft.rgba: rgb
 
 URxvt.color0:   #292a44
@@ -27,34 +27,35 @@ URxvt.color15:  #e88e2c
 URxvt.background: #292a44
 URxvt.foreground: #678bdc
 
-*URxvt.font: xft:lucy tewii:size=9
+
+URxvt.intensityStyles: false
+URxvt.allow_bold: false
+URxvt.font: xft:Knack Nerd Font Mono:style=Regular:size=12
+URxvt.boldFont: xft:Knack Nerd Font Mono:style=Bold:size=12  
+URxvt*letterSpace: -2
+
+URxvt.depth: 0
 URxvt.shading: 30
 URxvt.scrollBar: false
 URxvt.cursorBlink: true
 URxvt.internalBorder: 30
 URxvt.cursorUnderline : true
 URxvt.cursorColor : #2de0a7
-URxvt.geometry : 110x40
 URxvt.thickness : 5
 
-
-! ------------------------------------------------------------------------------
-! ROFI Color theme
-! ------------------------------------------------------------------------------
 rofi.color-enabled: true
-rofi.color-window: argb:ff292a44, #002b36, #000000
-rofi.color-normal: argb:00B2C7D2, argb:ff678bdc, argb:00B2C7D2, argb:00ffffff, argb:ff2de0a7
-rofi.color-active: #2de0a7, #ffffff, #2de0a7, #2de0a7, #2de0a7
-rofi.color-urgent: #fdf6e3, #dc322f, #eee8d5, #dc322f, #fdf6e3
-
-rofi.fake-transparency: true
-rofi.font: lucy tewii 9 
-rofi.columns: 2
-rofi.separator-style: none
-rofi.hide-scrollbar: true
-rofi.location: 0
-rofi.padding: 300
-rofi.fullscreen: true
-rofi.width: 1920
-rofi.lines: 19
-
+rofi.color-window: argb:be2c3643, argb:be2c3643, #dbe6ec
+rofi.color-normal: argb:0fdf6e3, #dbe6ec, argb:0eee8d5, #288ad6, #2c3643
+rofi.color-active: argb:0fdf6e3, #ffc107, argb:0eee8d5, #ffc107, #263238
+rofi.color-urgent: argb:0fdf6e3, #ef4981, argb:0eee8d5, #ef4981, #eceff1
+rofi.fullscreen: false
+rofi.width: 300
+rofi.padding: 10
+rofi.font: misc gohup 9
+rofi.location: 1
+rofi.bw: 2
+rofi.yoffset: 24
+rofi.fixed-visible-lines: false
+rofi.fixed-num-lines: false
+rofi.sidebar-mode: true
+rofi.modi: window,drun,run,ssh
