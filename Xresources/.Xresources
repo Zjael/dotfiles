@@ -5,15 +5,6 @@ Xft.dpi: 166
 rofi.dpi: 166
 Xcursor.size: 32
 
-!#-----------#
-!#-- Fonts --#
-!#-----------#
-URxvt.font: xft:Knack Nerd Font Mono:style=Regular:size=7
-URxvt.boldFont: xft:Knack Nerd Font Mono:style=Bold:size=7
-URxvt*letterSpace: -2
-
-rofi.font: Knack Nerd Font Mono 7
-
 !#----------#
 !#-- Xft ---#
 !#----------#
@@ -50,6 +41,9 @@ URxvt.foreground: #678bdc
 
 URxvt.intensityStyles: false
 URxvt.allow_bold: false
+URxvt.font: xft:Knack Nerd Font Mono:style=Regular:size=7
+URxvt.boldFont: xft:Knack Nerd Font Mono:style=Bold:size=7
+URxvt*letterSpace: -2
 
 URxvt.depth: 0
 URxvt.shading: 30
@@ -65,10 +59,11 @@ URxvt.thickness : 5
 !#----------#
 rofi.color-enabled: true
 rofi.color-window: #002b37, #002b37, #dbe6ec
-rofi.color-normal: #002b37, #eceff1, #003643, #006699, #ffffff
-rofi.color-active: #002b37, #ffc107, #003643, #006699, #ffc107
-rofi.color-urgent: #002b37, #da4281, #003643, #006699, #da4281
+rofi.color-normal: #002b37, #eceff1, #002966, #006699, #ffffff
+rofi.color-active: #002b37, #ffc107, #002966, #006699, #ffc107
+rofi.color-urgent: #002b37, #da4281, #002966, #006699, #da4281
 
+rofi.font: Knack Nerd Font Mono 7
 rofi.fullscreen: false
 rofi.sidebar-mode: true
 rofi.width: 30
