@@ -64,15 +64,10 @@ URxvt.thickness : 5
 !#-- Rofi --#
 !#----------#
 rofi.color-enabled: true
-rofi.color-window: #002b37, #002b37, #003642
+rofi.color-window: #002b37, #002b37, #dbe6ec
 rofi.color-normal: #002b37, #eceff1, #003643, #006699, #ffffff
-rofi.color-active: #002b37, #ffc107, #003643, #006699, #66c6ff
-rofi.color-urgent: #002b37, #da4281, #003643, #006699, #890661
-
-!rofi.color-window: argb:be2c3643, argb:be2c3643, #dbe6ec
-!rofi.color-normal: argb:0fdf6e3, #dbe6ec, argb:0eee8d5, #288ad6, #2c3643
-!rofi.color-active: argb:0fdf6e3, #ffc107, argb:0eee8d5, #ffc107, #263238
-!rofi.color-urgent: argb:0fdf6e3, #ef4981, argb:0eee8d5, #ef4981, #eceff1
+rofi.color-active: #002b37, #ffc107, #003643, #006699, #ffc107
+rofi.color-urgent: #002b37, #da4281, #003643, #006699, #da4281
 
 rofi.fullscreen: false
 rofi.sidebar-mode: true
