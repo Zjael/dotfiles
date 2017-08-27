@@ -5,9 +5,9 @@ sysresources=/etc/X11/xinit/.Xresources
 sysmodmap=/etc/X11/xinit/.Xmodmap
 
 # dpi scaling settings
-export QT_SCREEN_SCALE_FACTORS=2
-export GDK_SCALE=2
-export GDK_DPI_SCALE=0.5
+export QT_SCREEN_SCALE_FACTORS=1.6
+export GDK_SCALE=1.6
+export GDK_DPI_SCALE=0.8
 export DPI=166
 
 # merge in defaults and keymaps
