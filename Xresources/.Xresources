@@ -5,6 +5,15 @@ Xft.dpi: 166
 rofi.dpi: 166
 Xcursor.size: 32
 
+!#-----------#
+!#-- Fonts --#
+!#-----------#
+URxvt.font: xft:Knack Nerd Font Mono:style=Regular:size=7
+URxvt.boldFont: xft:Knack Nerd Font Mono:style=Bold:size=7
+URxvt*letterSpace: -2
+
+rofi.font: Knack Nerd Font Mono 7
+
 !#----------#
 !#-- Xft ---#
 !#----------#
@@ -41,9 +50,6 @@ URxvt.foreground: #678bdc
 
 URxvt.intensityStyles: false
 URxvt.allow_bold: false
-URxvt.font: xft:Knack Nerd Font Mono:style=Regular:size=7
-URxvt.boldFont: xft:Knack Nerd Font Mono:style=Bold:size=7
-URxvt*letterSpace: -2
 
 URxvt.depth: 0
 URxvt.shading: 30
@@ -67,7 +73,6 @@ rofi.fullscreen: false
 rofi.sidebar-mode: true
 rofi.width: 30
 rofi.padding: 10
-rofi.font: Knack Nerd Font Mono 7
 rofi.location: 0
 rofi.lines: 10
 rofi.bw: 2
