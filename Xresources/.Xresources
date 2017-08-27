@@ -30,8 +30,8 @@ URxvt.foreground: #678bdc
 
 URxvt.intensityStyles: false
 URxvt.allow_bold: false
-URxvt.font: xft:Knack Nerd Font Mono:style=Regular:size=8
-URxvt.boldFont: xft:Knack Nerd Font Mono:style=Bold:size=8 
+URxvt.font: xft:Knack Nerd Font Mono:style=Regular:size=7
+URxvt.boldFont: xft:Knack Nerd Font Mono:style=Bold:size=7
 URxvt*letterSpace: -2
 
 URxvt.depth: 0
@@ -43,13 +43,15 @@ URxvt.cursorUnderline : true
 URxvt.cursorColor : #2de0a7
 URxvt.thickness : 5
 
-rofi.dpi: 166
+
 rofi.color-enabled: true
 rofi.color-window: argb:be2c3643, argb:be2c3643, #dbe6ec
 rofi.color-normal: argb:0fdf6e3, #dbe6ec, argb:0eee8d5, #288ad6, #2c3643
 rofi.color-active: argb:0fdf6e3, #ffc107, argb:0eee8d5, #ffc107, #263238
 rofi.color-urgent: argb:0fdf6e3, #ef4981, argb:0eee8d5, #ef4981, #eceff1
+
 rofi.fullscreen: false
+rofi.sidebar-mode: false
 rofi.width: 300
 rofi.padding: 10
 rofi.font: misc gohup 9
@@ -58,5 +60,4 @@ rofi.bw: 2
 rofi.yoffset: 24
 rofi.fixed-visible-lines: false
 rofi.fixed-num-lines: false
-rofi.sidebar-mode: true
 rofi.modi: window,drun,run,ssh

@@ -7,6 +7,7 @@ sysmodmap=/etc/X11/xinit/.Xmodmap
 export DPI=166
 echo 'Xft.dpi: '$DPI | xrdb -merge -
 echo 'Xcursor.size: 32' | xrdb -merge -
+echo 'rofi.dpi: '$DPI | xrdb -merge -
 
 # merge in defaults and keymaps
 if [ -f $sysresources ]; then
