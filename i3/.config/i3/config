@@ -28,7 +28,7 @@ gaps inner 5
 #-- Keybindings --#
 #-----------------#
 bindsym $mod+Return exec urxvt -geometry 110x40
-bindsym $mod+d exec "rofi -show run"
+bindsym $mod+d exec "rofi -show drun"
 
 for_window [instance="__scratchpad"] move scratchpad 
 for_window [instance="__scratchpad"] floating enable
