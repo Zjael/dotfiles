@@ -57,7 +57,7 @@ URxvt.thickness : 5
 !#----------#
 !#-- Rofi --#
 !#----------#
-rofi.color-enabled: false
+rofi.color-enabled: true
 rofi.color-window: argb:be2c3643, argb:be2c3643, #dbe6ec
 rofi.color-normal: argb:0fdf6e3, #dbe6ec, argb:0eee8d5, #288ad6, #2c3643
 rofi.color-active: argb:0fdf6e3, #ffc107, argb:0eee8d5, #ffc107, #263238
@@ -69,7 +69,7 @@ rofi.width: 30
 rofi.padding: 10
 rofi.font: Knack Nerd Font Mono 7
 rofi.location: 0
-rofi.eh: 10
+rofi.lines: 10
 rofi.bw: 2
 rofi.fixed-visible-lines: false
 rofi.fixed-num-lines: false
