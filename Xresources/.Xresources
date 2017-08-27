@@ -1,4 +1,13 @@
-!Xft.dpi: 96
+!#-------------#
+!#-- Scaling --#
+!#-------------#
+Xft.dpi: 166
+rofi.dpi: 166
+Xcursor.size: 32
+
+!#----------#
+!#-- Xft ---#
+!#----------#
 Xft.autohint: false
 Xft.lcdfilter: lcddefault
 Xft.hintstyle: hintslight
@@ -6,6 +15,9 @@ Xft.hinting: true
 Xft.antialias: true
 Xft.rgba: rgb
 
+!#-----------#
+!#-- URxvt --#
+!#-----------#
 URxvt.color0:   #292a44
 URxvt.color1:   #6dfedf
 URxvt.color2:   #e88e2c
@@ -27,7 +39,6 @@ URxvt.color15:  #e88e2c
 URxvt.background: #292a44
 URxvt.foreground: #678bdc
 
-
 URxvt.intensityStyles: false
 URxvt.allow_bold: false
 URxvt.font: xft:Knack Nerd Font Mono:style=Regular:size=7
@@ -43,21 +54,23 @@ URxvt.cursorUnderline : true
 URxvt.cursorColor : #2de0a7
 URxvt.thickness : 5
 
-
-rofi.color-enabled: true
+!#----------#
+!#-- Rofi --#
+!#----------#
+rofi.color-enabled: false
 rofi.color-window: argb:be2c3643, argb:be2c3643, #dbe6ec
 rofi.color-normal: argb:0fdf6e3, #dbe6ec, argb:0eee8d5, #288ad6, #2c3643
 rofi.color-active: argb:0fdf6e3, #ffc107, argb:0eee8d5, #ffc107, #263238
 rofi.color-urgent: argb:0fdf6e3, #ef4981, argb:0eee8d5, #ef4981, #eceff1
 
 rofi.fullscreen: false
-rofi.sidebar-mode: false
-rofi.width: 300
+rofi.sidebar-mode: true
+rofi.width: 30
 rofi.padding: 10
-rofi.font: misc gohup 9
-rofi.location: 1
+rofi.font: Knack Nerd Font Mono 7
+rofi.location: 0
+rofi.eh: 10
 rofi.bw: 2
-rofi.yoffset: 24
 rofi.fixed-visible-lines: false
 rofi.fixed-num-lines: false
 rofi.modi: window,drun,run,ssh

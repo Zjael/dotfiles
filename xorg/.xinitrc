@@ -4,10 +4,11 @@ usermodmap=$HOME/.Xmodmap
 sysresources=/etc/X11/xinit/.Xresources
 sysmodmap=/etc/X11/xinit/.Xmodmap
 
+# dpi scaling settings
+export QT_SCREEN_SCALE_FACTORS=2
+export GDK_SCALE=2
+export GDK_DPI_SCALE=0.5
 export DPI=166
-echo 'Xft.dpi: '$DPI | xrdb -merge -
-echo 'Xcursor.size: 32' | xrdb -merge -
-echo 'rofi.dpi: '$DPI | xrdb -merge -
 
 # merge in defaults and keymaps
 if [ -f $sysresources ]; then
