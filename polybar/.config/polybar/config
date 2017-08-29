@@ -37,7 +37,7 @@ font-2 = Wuncon Siji:size=11;2
 
 modules-left = i3
 modules-center = date
-modules-right = pkg wifi wired battery volume powermenu
+modules-right = pkg temperature wifi wired battery volume powermenu
 
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
@@ -105,7 +105,7 @@ double-click-right =
 
 [module/temperature]
 type = custom/script
-interval = 1
+interval = 5
 exec-if = sensors
 exec = ~/dotfiles/scripts/panel/temperature.sh
 
