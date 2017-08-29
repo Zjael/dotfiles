@@ -10,6 +10,12 @@ temperaturesValues=(30 40 55 70 90 110)
 temperaturesColors=("#6bff49" "#f4cb24" "#ff8819" "#ff3205" "#f40202" "#ef02db")
 temperaturesIcon=""
 
+ 1
+ 2
+ 3
+ 4
+ 5
+
 for iCore in ${!tempCore[*]}
 do
     for iTemp in ${!temperaturesValues[*]}
