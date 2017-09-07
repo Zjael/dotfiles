@@ -37,7 +37,7 @@ arch_setup() {
     #set_bootloader
 
     echo "#-- Setting Up Shell --#"
-    #setup_shell
+    setup_shell
 
     echo "#-- Setting Up Laptop --#"
     #setup_laptop   # Setups TLP, Thermald & Microcode
@@ -46,16 +46,16 @@ arch_setup() {
     #setup_fstrim   # Weekly SSD maintenance, make sure your SSD supports TRIM if unsure run 'lsblk -D'
 
     echo "#-- Installing Pacaur --#"
-    #install_pacaur
+    install_pacaur
 
     echo "#-- Installing Packages --#"
     install_packages
 
     echo "#-- Setting Up Services --#"
-    #setup_services
+    setup_services
 
     echo "#-- Installing Python Packages --#"
-    #python_packages
+    python_packages
 }
 
 set_locale() {
@@ -167,11 +167,11 @@ install_pacaur() {
 install_packages() {
     local packages=''
     # System utilities
-    packages+=' networkmanager lm_sensors thermald curl wget httpie htop nethogs udevil rar unrar scrot neofetch'
+    packages+=' networkmanager lm_sensors thermald curl wget httpie htop nethogs udevil rar unrar scrot neofetch rsync'
 
     # Terminal
     packages+=' tmux tree ranger autojump thefuck micro bash-snippets'
-    packages+=' rtv'
+    packages+=' rtv xclip fzf jq nnn googler buku ledger pass chkservice'
 
     # Development
     packages+=' git gist tig'
@@ -180,9 +180,6 @@ install_packages() {
 
     # Security
     packages+=' lynis firejail'
-
-    # Storage & Data
-    packages+=' fzf rsync'
 
     # Xorg
     packages+=' xorg xorg-xinit xbacklight'
@@ -194,7 +191,7 @@ install_packages() {
     packages+=' cowsay lolcat fortune-mod'
 
     # Enviroment
-    packages+=' i3-gaps i3lock polybar'
+    packages+=' i3-gaps i3lock polybar-git'
     packages+=' stow redshift rofi nitrogen compton dunst rxvt-unicode rxvt-unicode-terminfo'
 
     # Themes
@@ -219,7 +216,6 @@ python_packages() {
     pip install howdoi
     pip install tldr
     pip install jrnl
-    pip3 install buku
     pip3 install cryptop
 }
 
