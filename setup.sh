@@ -167,11 +167,11 @@ install_pacaur() {
 install_packages() {
     local packages=''
     # System utilities
-    packages+=' networkmanager lm_sensors thermald curl wget httpie htop nethogs udevil rar unrar scrot neofetch rsync'
+    packages+=' networkmanager lm_sensors thermald curl wget htop nethogs udevil rar unrar scrot neofetch rsync'
 
     # Terminal
-    packages+=' tmux tree ranger autojump thefuck micro bash-snippets'
-    packages+=' rtv xclip fzf jq nnn googler buku ledger pass chkservice'
+    packages+=' exa dtach tree ranger autojump thefuck micro bash-snippets'
+    packages+=' rtv xclip fzf jq nnn googler buku ledger pass chkservice the_silver_searcher'
 
     # Development
     packages+=' git gist tig'
