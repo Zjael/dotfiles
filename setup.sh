@@ -191,8 +191,8 @@ install_packages() {
     packages+=' cowsay lolcat fortune-mod'
 
     # Enviroment
-    packages+=' i3-gaps i3lock polybar-git'
-    packages+=' stow redshift rofi nitrogen dunst rxvt-unicode rxvt-unicode-terminfo'
+    packages+=' bspwm polybar-git'
+    packages+=' stow redshift rofi nitrogen dunst termite'
 
     # Themes
     packages+=' gtk-arc-flatabulous-theme-git paper-icon-theme-git siji-git ttf-material-icons'
