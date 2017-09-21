@@ -8,7 +8,7 @@ sysmodmap=/etc/X11/xinit/.Xmodmap
 #export QT_SCREEN_SCALE_FACTORS=2
 #export GDK_SCALE=2
 #export GDK_DPI_SCALE=0.5
-export DPI=166
+export DPI=96
 
 # merge in defaults and keymaps
 if [ -f $sysresources ]; then

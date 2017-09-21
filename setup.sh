@@ -192,7 +192,7 @@ install_packages() {
 
     # Enviroment
     packages+=' i3-gaps i3lock polybar-git'
-    packages+=' stow redshift rofi nitrogen compton dunst rxvt-unicode rxvt-unicode-terminfo'
+    packages+=' stow redshift rofi nitrogen dunst rxvt-unicode rxvt-unicode-terminfo'
 
     # Themes
     packages+=' gtk-arc-flatabulous-theme-git paper-icon-theme-git siji-git ttf-material-icons'
