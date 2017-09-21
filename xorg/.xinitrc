@@ -42,4 +42,5 @@ fi
 #exec xterm -geometry 80x66+0+0 -name login
 
 xrandr --dpi $DPI
-exec i3
+#exec i3
+exec bspwm
