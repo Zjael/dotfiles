@@ -43,4 +43,4 @@ fi
 
 xrandr --dpi $DPI
 #exec i3
-exec bspwm
+sxhkd & exec bspwm
