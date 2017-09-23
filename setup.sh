@@ -192,7 +192,7 @@ install_packages() {
 
     # Enviroment
     packages+=' herbstluftwm 2bwm lemonbar'
-    packages+=' stow redshift rofi nitrogen dunst termite'
+    packages+=' stow redshift rofi nitrogen compton dunst termite'
 
     # Themes
     packages+=' gtk-arc-flatabulous-theme-git paper-icon-theme-git'

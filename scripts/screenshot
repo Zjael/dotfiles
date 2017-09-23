@@ -1,0 +1,4 @@
+#!/bin/bash
+scrot $HOME/images/screenshots/$(date +%d%b2k%y-%H%M%S).png
+sleep 2s
+notify-send "SCREENSHOT TAKEN"
