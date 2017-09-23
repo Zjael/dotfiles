@@ -191,14 +191,14 @@ install_packages() {
     packages+=' cowsay lolcat fortune-mod'
 
     # Enviroment
-    packages+=' bspwm polybar-git'
+    packages+=' herbstluftwm 2bwm lemonbar'
     packages+=' stow redshift rofi nitrogen dunst termite'
 
     # Themes
-    packages+=' gtk-arc-flatabulous-theme-git paper-icon-theme-git siji-git ttf-material-icons'
+    packages+=' gtk-arc-flatabulous-theme-git paper-icon-theme-git'
 
     # Fonts
-    packages+=' nerd-fonts-complete bdf-tewi-git'
+    packages+=' nerd-fonts-complete'
 
     for pkg in $packages; do
         sudo -u $SUDO_USER pacaur -S --needed --noconfirm --noedit $pkg

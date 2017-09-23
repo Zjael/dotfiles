@@ -5,7 +5,7 @@ SILENT=${SILENT-true}
 DIRNAME=$(dirname $0)
 cd $DIRNAME
 
-MODULES=("bspwm" "sxhkd" "polybar" "xorg" "zsh" "dunst")
+MODULES=("polybar" "neofetch" "xorg" "zsh" "dunst")
 
 ARG="-t /home/$USER"
 
