@@ -8,8 +8,8 @@
 #  ██ ░░██░██ ███  ░██░██  ░░██ ░███   ░░█████  
 # ░░   ░░ ░░ ░░░   ░░ ░░    ░░  ░░░     ░░░░░  
 
-setxkbmap dk &
-xrdb -merge ~/.Xresources &
+setxkbmap -layout dk &
+xrdb -load ~/.Xresources &
 xsetroot -cursor_name left_ptr &
 dunst -conf ~/.config/dunst/dunstrc &
 
