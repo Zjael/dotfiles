@@ -24,10 +24,10 @@ hc keybind $Mod-Shift-q quit
 hc keybind $Mod-Shift-r reload
 hc keybind $Mod-Shift-e close
 
-hc keybind $Mod-t spawn ${xterm:-urxvt} -geometry 110x40 # use your $TERMINAL with xterm as fallback
+hc keybind $Mod-Return spawn ${xterm:-urxvt} -geometry 110x40 # use your $TERMINAL with xterm as fallback
+hc keybind $Mod-d spawn rofi -show drun
 hc keybind $Mod-f spawn urxvt -e ranger
 hc keybind $Mod-w spawn firefox
-hc keybind $Mod-d spawn rofi -show drun
 
 hc keybind $Mod-b spawn $HOME/dotfiles/scripts/togglebar
 hc keybind Print  spawn $HOME/dotfiles/scripts/screenshot
@@ -170,8 +170,10 @@ herbstclient set tree_style '╾│ ├└╼─┐'
 #monitor=${1:-0}
 #herbstclient pad $monitor 16
 
+nitrogen --set-scaled ~/dotfiles/wallpapers/astronout.jpg
+
 # find the panel
-panel=~/dotfiles/scripts/bar
+panel=~/dotfiles/scripts/panel.sh
 [ -x "$panel" ] || panel=/etc/xdg/herbstluftwm/panel.sh
 for monitor in $(herbstclient list_monitors | cut -d: -f1) ; do
     # start it on each monitor
